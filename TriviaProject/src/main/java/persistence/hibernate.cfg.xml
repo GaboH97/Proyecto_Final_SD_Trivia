@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="hibernate.connection.username">spark</property>
+        <property name="hibernate.connection.password">123</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+		
+        <mapping class="models.entity.Students"/>
+        <mapping class="models.entity.Trainners"/>
+        <mapping class="models.entity.Movements"/>
+
+    </session-factory>
+</hibernate-configuration>
