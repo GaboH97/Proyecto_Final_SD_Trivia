@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/main.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Agregar Pregunta</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12-info" id="alert">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="form-question" role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <Label for="c-name">Pregunta: </Label>
+                            <input class="form-control" type="text" name="textoPregunta" id="c-name" autofocus required />
+                        </div>
+                        <div class="form-group">
+                            <Label for="c-tel">Nivel Dificultad </Label>
+                            <input class="form-control" type="number" name="nivelDificultadPregunta" id="c-tel" required />
+                        </div>
+                        <div class="form-group">
+                            <Label for="c-mail">Respuesta 1: </Label>
+                            <input class="form-control" type="email" id="c-mail" name="respuestaUno" required />
+                        </div>
+                        <div class="form-group">
+                            <Label for="c-mail">Respuesta 2: </Label>
+                            <input class="form-control" type="email" id="c-mail" name="respuestaDos" required />
+                        </div>
+                        <div class="form-group">
+                            <Label for="c-mail">Respuesta 3: </Label>
+                            <input class="form-control" type="email" id="c-mail" name="respuestaTres" required />
+                        </div>
+                        <div class="form-group">
+                            <Label for="c-mail">Respuesta 4: </Label>
+                            <input class="form-control" type="email" id="c-mail" name="respuestaCuatro" required />
+                        </div>
+                        <div class="form-group">
+                            <Label for="c-mail">Correcta: </Label>
+                            <input class="form-control" type="email" id="c-mail" name="correcta" required />
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Agregar" id="add-question" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/index.js"></script>
+    </body>
+
+</html>
