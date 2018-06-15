@@ -43,3 +43,17 @@ tbody::-webkit-scrollbar-thumb
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #282828;
 }
+
+.background-login {
+
+  background: url('../img/fondo.jpg') !important;
+      background-size: auto auto;
+  background-size: cover !important;
+
+}
+
+.register-panel{
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  padding: 30px;
+  border-radius: 5px;  
+}
