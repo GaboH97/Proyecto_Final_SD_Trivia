@@ -75,6 +75,10 @@ tbody::-webkit-scrollbar-thumb
   color: green;
 }
 
+.titles{
+  color:white; font-weight:bold;
+}
+
 .pregunta {
   -ms-grid-rows: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
