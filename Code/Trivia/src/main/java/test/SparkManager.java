@@ -29,6 +29,9 @@ public class SparkManager {
         get("/players", (req, res) -> juego.getAllPlayers(), JsonUtil.json());
 //        get("/trainners", (req, res) -> juego.getAllTrainners(), JsonUtil.json());
 //        get("/movements", (req, res) -> juego.getAllMovements(), JsonUtil.json());
+
+        post("/login", (req, res) -> juego.login(req.queryParams("email"), req.queryParams("password")),JsonUtil.json());
+        
         post("/player", (req, res) -> juego.createPlayer(
                 req.queryParams("nombreJugador"),
                 req.queryParams("contraseniaJugador"),
@@ -46,7 +49,6 @@ public class SparkManager {
                 req.queryParams("respuestaTres"),
                 req.queryParams("respuestaCuatro"),
                 Integer.parseInt(req.queryParams("correcta"))), JsonUtil.json());
-
     }
 
     /**

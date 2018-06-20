@@ -47,13 +47,14 @@ public class Juego {
      * @param fotoOAvatar
      * @return A message representing success/failure when adding a new student
      */
-    public String createPlayer(String nombreUsuario, String contrasenaUsuario, String email, String fotoOAvatar) {
+    public Jugador createPlayer(String nombreUsuario, String contrasenaUsuario, String email, String fotoOAvatar) {
         Jugador jugador = new Jugador(nombreUsuario, contrasenaUsuario, email, fotoOAvatar);
         try {
             addPlayer(jugador);
-            return "Jugador agregado";
+            jugador.setContrasenaUsuario("null");
+            return jugador;
         } catch (Exception e) {
-            return "No se pudo agregar jugador";
+            return null;
         }
     }
 
@@ -96,6 +97,13 @@ public class Juego {
         List<Pregunta> list = sessionHibernate.createQuery("from " + Pregunta.class.getName()).list();
         sessionHibernate.close();
         return list;
+    }
 
-    } 
+    public Jugador login(String email, String password) {
+        sessionHibernate = HibernateUtil.getSessionFactory().openSession();
+        List<Jugador> list = sessionHibernate.createQuery("from " + Jugador.class.getName() +" WHERE email='"+email +"' and contrasenausuario='"+password+"'").list();
+        sessionHibernate.close();
+        System.out.println("email"+list.get(0).getEmail());
+        return list.get(0);
+    }
 }
