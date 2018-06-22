@@ -1,6 +1,8 @@
 package models.dao;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.entities.Jugador;
 import models.entities.Pregunta;
 import org.hibernate.Session;
@@ -39,6 +41,10 @@ public class Juego {
         saveHibernate(pregunta);
     }
 
+    public void removeQuestion(Pregunta pregunta) throws Exception {
+        removeHibernate(pregunta);
+    }
+
     /**
      *
      * @param nombreUsuario
@@ -58,14 +64,18 @@ public class Juego {
         }
     }
 
-    public String createQuestion(String textoPregunta, Integer nivelDificultad, String respuestaUno, String respuestaDos, String respuestaTres, String respuestaCuatro, int correcta) {
+    public String createQuestion(String id, String textoPregunta, Integer nivelDificultad, String respuestaUno, String respuestaDos, String respuestaTres, String respuestaCuatro, int correcta) {
         Pregunta pregunta = new Pregunta(textoPregunta, nivelDificultad, respuestaUno, respuestaDos, respuestaTres, respuestaCuatro, correcta);
+        if (!id.isEmpty()) {
+            pregunta.setIdPregunta(Long.parseLong(id));
+        }
         try {
             addQuestion(pregunta);
             return "Pregunta agregada";
         } catch (Exception e) {
             return "No se pudo agregar pregunta";
         }
+
     }
 
     /**
@@ -76,7 +86,15 @@ public class Juego {
     public void saveHibernate(Object object) throws Exception {
         sessionHibernate = HibernateUtil.getSessionFactory().openSession();
         tx = sessionHibernate.beginTransaction();
-        sessionHibernate.save(object);
+        sessionHibernate.saveOrUpdate(object);
+        tx.commit();
+        sessionHibernate.close();
+    }
+
+    public void removeHibernate(Object object) {
+        sessionHibernate = HibernateUtil.getSessionFactory().openSession();
+        tx = sessionHibernate.beginTransaction();
+        sessionHibernate.remove(object);
         tx.commit();
         sessionHibernate.close();
     }
@@ -101,9 +119,28 @@ public class Juego {
 
     public Jugador login(String email, String password) {
         sessionHibernate = HibernateUtil.getSessionFactory().openSession();
-        List<Jugador> list = sessionHibernate.createQuery("from " + Jugador.class.getName() +" WHERE email='"+email +"' and contrasenausuario='"+password+"'").list();
+        List<Jugador> list = sessionHibernate.createQuery("from " + Jugador.class.getName() + " WHERE email='" + email + "' and contrasenausuario='" + password + "'").list();
         sessionHibernate.close();
-        System.out.println("email"+list.get(0).getEmail());
+        System.out.println("email" + list.get(0).getEmail());
         return list.get(0);
     }
+
+    public Pregunta getQuestionById(String params) {
+        sessionHibernate = HibernateUtil.getSessionFactory().openSession();
+        Pregunta pregunta = (Pregunta) sessionHibernate.createQuery("from " + Pregunta.class.getName() + " where IDPREGUNTA=" + params).list().get(0);
+        sessionHibernate.close();
+        return pregunta;
+    }
+
+    public String deletQustion(String params) {
+        Pregunta pregunta = getQuestionById(params);
+        try {
+            removeQuestion(pregunta);
+        } catch (Exception ex) {
+            Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+            return "Error no se pudo eliminar";
+        }
+        return "Se borro correctamente";
+    }
+
 }

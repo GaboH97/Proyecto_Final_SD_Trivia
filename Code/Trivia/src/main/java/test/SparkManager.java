@@ -30,8 +30,8 @@ public class SparkManager {
 //        get("/trainners", (req, res) -> juego.getAllTrainners(), JsonUtil.json());
 //        get("/movements", (req, res) -> juego.getAllMovements(), JsonUtil.json());
 
-        post("/login", (req, res) -> juego.login(req.queryParams("email"), req.queryParams("password")),JsonUtil.json());
-        
+        post("/login", (req, res) -> juego.login(req.queryParams("email"), req.queryParams("password")), JsonUtil.json());
+
         post("/player", (req, res) -> juego.createPlayer(
                 req.queryParams("nombreJugador"),
                 req.queryParams("contraseniaJugador"),
@@ -42,13 +42,22 @@ public class SparkManager {
 //        get("/trainners", (req, res) -> juego.getAllTrainners(), JsonUtil.json());
 //        get("/movements", (req, res) -> juego.getAllMovements(), JsonUtil.json());
         post("/question", (req, res) -> juego.createQuestion(
+                req.queryParams("idPregunta"),
                 req.queryParams("textoPregunta"),
-                Integer.parseInt(req.queryParams("nivelDificultadPregunta")),
+                Integer.parseInt(req.queryParams("dificultad")),
                 req.queryParams("respuestaUno"),
                 req.queryParams("respuestaDos"),
                 req.queryParams("respuestaTres"),
                 req.queryParams("respuestaCuatro"),
-                Integer.parseInt(req.queryParams("correcta"))), JsonUtil.json());
+                Integer.parseInt(req.queryParams("inlineRadioOptions"))), JsonUtil.json());
+
+        get("/question/:id", (request, response) -> {
+            return juego.getQuestionById(request.params(":id"));
+        },JsonUtil.json());
+        
+        delete("/question/:id", (request, response) -> {
+            return juego.deletQustion(request.params(":id"));
+        },JsonUtil.json());
     }
 
     /**

@@ -1,24 +1,24 @@
 .img-circle {
-  width: 15%;
+    width: 15%;
 }
 
 /*Create scrollabe table */
 thead, tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 tbody {
-  display: block;
-  max-height: 370px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+    display: block;
+    max-height: 370px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 td {
-  overflow: hidden;
-  text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /*Custom table design from 
@@ -26,68 +26,73 @@ https://codepen.io/devstreak/pen/dMYgeO*/
 
 tbody::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
 }
 
 tbody::-webkit-scrollbar
 {
-	width: 12px;
-	background-color: #F5F5F5;
+    width: 12px;
+    background-color: #F5F5F5;
 }
 
 tbody::-webkit-scrollbar-thumb
 {
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #282828;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #282828;
 }
 
 .background-login {
 
-  background: url('../img/fondo.jpg') !important;
-      background-size: auto auto;
-  background-size: cover !important;
+    background: url('../img/fondo.jpg') !important;
+    background-size: auto auto;
+    background-size: cover !important;
 
 }
 
 .register-panel{
-  background-color: rgba(255, 255, 255, 0.7) !important;
-  padding: 30px;
-  border-radius: 5px;  
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    padding: 30px;
+    border-radius: 5px;  
 }
 
 .avatar{
-  width: 50px;
+    width: 50px;
 }
 
 .pregunta p{
-  display: inline-block;
+    margin-right: 30px;
 }
 
 .pregunta p .glyphicon-remove{
-  color: red;
+    color: red;
 }
 
 
 .pregunta p .glyphicon-ok{
-  color: green;
+    color: green;
+
 }
 
 .titles{
-  color:white; font-weight:bold;
+    color:white; font-weight:bold;
 }
 
 .pregunta {
-  -ms-grid-rows: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  box-shadow: 0 0 2rem rgba(0,0,255,.1);
-  padding: 2rem;
-  margin: 2rem;
-  background-color: #fff;
-  border-radius: 1.75rem;
-  -webkit-animation: 1.25s ease-in-out fadein;
-  -moz-animation: 1.25s ease-in-out fadein;
-  animation: 1.25s ease-in-out fadein;
+    -ms-grid-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    box-shadow: 0 0 2rem rgba(0,0,255,.1);
+    padding: 2rem;
+    margin: 2rem;
+    background-color: #fff;
+    border-radius: 1.75rem;
+    -webkit-animation: 1.25s ease-in-out fadein;
+    -moz-animation: 1.25s ease-in-out fadein;
+    animation: 1.25s ease-in-out fadein;
+}
+
+.optioncorrect{
+    margin-top: 30px;
 }

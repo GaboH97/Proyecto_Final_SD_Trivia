@@ -11,9 +11,8 @@ import javax.persistence.Table;
 @Table(name = "JUGADORES")
 
 public class Jugador {
-    
-    //===============Attributes===============
 
+    //===============Attributes===============
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,11 +20,10 @@ public class Jugador {
     private String contrasenaUsuario;
     private String email;
     private String fotoJugador;
+    private int puntaje;
 //    private List<Partida> partidas;
 
-    
     //===============Constructors=============
-    
     public Jugador() {
     }
 
@@ -34,10 +32,10 @@ public class Jugador {
         this.contrasenaUsuario = contrasenaUsuario;
         this.email = email;
         this.fotoJugador = fotoJugador;
+        this.puntaje = 0;
     }
-    
-    //============Getters & Setters===========
 
+    //============Getters & Setters===========
     public Long getId() {
         return id;
     }
@@ -45,9 +43,15 @@ public class Jugador {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
@@ -76,7 +80,7 @@ public class Jugador {
         return fotoJugador;
     }
 
-    public void setFotoJugador(String fotoJugador) {    
+    public void setFotoJugador(String fotoJugador) {
         this.fotoJugador = fotoJugador;
     }
 

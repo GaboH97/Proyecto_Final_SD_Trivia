@@ -1,126 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/main.css">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/main.css">
+        <title>Document</title>
+    </head>
 
-<body>
+    <body>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                    aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                            aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">Usuarios</a>
+                        </li>
+                        <li class="active">
+                            <a href="adminPartidas.html">Partidas
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admonPreguntas.html">Preguntas</a>
+                        </li>
+                        <li>
+                            <a href="adminRanking.html">Ranking</a>
+                        </li>
+                        <li>
+                            <a id="login" href="#">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
+            <!-- /.container-fluid -->
+        </nav>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">Usuarios</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">Partidas
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Preguntas</a>
-                    </li>
-                    <li>
-                        <a href="#">Ranking</a>
-                    </li>
-                    <li>
-                        <a id="login" href="#">
-                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                        </a>
-                    </li>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+                    <h1>Partidas</h1>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-success">Crear Partida</button>
+                </div>
+                <div class="col-xs-12">
+
+                    <!--Table-->
+                    <table class="table">
+
+                        <!--Table head-->
+                        <thead class="mdb-color darken-3">
+                            <tr class="text-white">
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Participantes</th>
+                                <th>Duración</th>
+                                <th>Estado</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                        <!--Table head-->
+                        <!--Table body-->
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Partida 1</td>
+                                <td>4</td>
+                                <td>1 min</td>
+                                <td>abierta</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Partida 1</td>
+                                <td>4</td>
+                                <td>1 min</td>
+                                <td>abierta</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Partida 1</td>
+                                <td>4</td>
+                                <td>1 min</td>
+                                <td>abierta</td>
+                            </tr>
+                        </tbody>
+                        <!--Table body-->
+
+                    </table>
+                    <!--Table-->
+                </div>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
-    </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-8">
-                <h1>Partidas</h1>
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-success">Crear Partida</button>
-            </div>
-            <div class="col-xs-12">
-
-                <!--Table-->
-                <table class="table">
-
-                    <!--Table head-->
-                    <thead class="mdb-color darken-3">
-                        <tr class="text-white">
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Participantes</th>
-                            <th>Duración</th>
-                            <th>Estado</th>
-                            <th>-</th>
-                        </tr>
-                    </thead>
-                    <!--Table head-->
-                    <!--Table body-->
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Partida 1</td>
-                            <td>4</td>
-                            <td>1 min</td>
-                            <td>abierta</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Partida 1</td>
-                            <td>4</td>
-                            <td>1 min</td>
-                            <td>abierta</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Partida 1</td>
-                            <td>4</td>
-                            <td>1 min</td>
-                            <td>abierta</td>
-                        </tr>
-                    </tbody>
-                    <!--Table body-->
-
-                </table>
-                <!--Table-->
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')
-    </script>
-    <script src="js/vendor/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</body>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="../js/jquery.min.js"></script>
+        
+        <script src="js/vendor/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/singup.js"></script>
+    </body>
 
 </html>

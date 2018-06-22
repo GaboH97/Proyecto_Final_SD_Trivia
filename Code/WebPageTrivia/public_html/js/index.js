@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var state = "jugadores";
-    addPlayers();
+    //addPlayers();
 
     $('#add').on('click', function () {
         if (state == 'jugadores') {

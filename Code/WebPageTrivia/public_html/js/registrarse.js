@@ -11,7 +11,7 @@ $(document).ready(function () {
             success: function (result) {
                 if (result != null) {
                     localStorage.setItem('user', JSON.stringify(result));
-                    location.href = "../index.html";
+                    location.href = "admonPreguntas.html";
                 } else {
                     $("#alert").html("");
                     $("#alert").append('<div class="alert alert-danger"><strong>Error:  </strong>' + result + '</div>');

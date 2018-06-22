@@ -1,189 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../css/main.css">
-    <title>Document</title>
-</head>
+        <link rel="stylesheet" href="../css/main.css">
+        <title>Preguntas</title>
+    </head>
 
-<body>
+    <body>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                            aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active">
-                    <a href="#">Usuarios</a>
-                    <span class="sr-only">(current)</span>
-                </li>
-                <li>
-                    <a href="#">Partidas
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Preguntas</a>
-                </li>
-                <li>
-                    <a href="#">Ranking</a>
-                </li>
-                <li>
-                    <a id="login" href="#">
-                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                    </a>
-                </li>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li >
+                            <a href="adminUsuarios.html">Usuarios</a>
+                        </li>
+                        <li>
+                            <a href="adminPartidas.html">Partidas
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="admonPreguntas.html">Preguntas</a>
+                            <span class="sr-only">(current)</span>
+
+                        </li>
+                        <li>
+                            <a href="adminUsuarios.html">Ranking</a>
+                        </li>
+                        <li>
+                            <a id="login" href="#">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+            <!-- /.container-fluid -->
+        </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-8">
-                <h1>Usuarios</h1>
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                    Filtar
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Ranking</a>
-                    </li>
-                    <li>
-                        <a href="#">Name</a>
-                    </li>
-                </ul>
+        <div class="container">
 
-                <button type="button" class="btn btn-success" data-toggle ="modal" data-target="#createQuestionModal">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    Crear Pregunta
-                </button>
-                <!-- Modal -->
-                <div id="createQuestionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createQuestionModalTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Agregar Pregunta</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="container-fluid">
-                        <form>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Pregunta:</label>
-                                <textarea class="form-control" id="question"></textarea>
+            <div id="alert"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+                    <h1>Preguntas</h1>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                        Filtar
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Ranking</a>
+                        </li>
+                        <li>
+                            <a href="#">Name</a>
+                        </li>
+                    </ul>
+
+                    <button type="button" class="btn btn-success" data-toggle ="modal" data-target="#createQuestionModal">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Crear Pregunta
+                    </button>
+                    <!-- Modal -->
+                    <div id="createQuestionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createQuestionModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Agregar Pregunta</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form id="form-question">
+                                            <div class="form-group">
+                                                <label for="idPregunta" class="col-form-label">Id</label>
+                                                <input name="idPregunta" class="form-control" id="idPregunta" readonly="readonly"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Pregunta:</label>
+                                                <textarea name="textoPregunta" class="form-control" id="question"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dificultad" class="col-form-label">Dificultad</label>
+                                                <input name="dificultad" type="number" class="form-control" id="dificultad">
+                                            </div>
+                                            <div class="form-group">                               
+                                                <div class="col-sm-7">
+                                                    <label for="message-text" class="col-form-label">Respuesta 1:</label>
+                                                    <input name="respuestaUno" type="text" class="form-control" id="answer1">
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-check form-check-inline optioncorrect">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked="checked">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">                               
+                                                <div class="col-sm-7">
+                                                    <label for="message-text" class="col-form-label">Respuesta 2:</label>
+                                                    <input name="respuestaDos" type="text" class="form-control" id="answer2">
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-check form-check-inline optioncorrect">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">                               
+                                                <div class="col-sm-7">
+                                                    <label for="message-text" class="col-form-label">Respuesta 3:</label>
+                                                    <input name="respuestaTres" type="text" class="form-control" id="answer3">
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-check form-check-inline optioncorrect">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
+
+                                                    </div>
+                                                </div>
+                                            </div><div class="form-group">                               
+                                                <div class="col-sm-7">
+                                                    <label for="message-text" class="col-form-label">Respuesta 4:</label>
+                                                    <input name="respuestaCuatro" type="text" class="form-control" id="answer4">
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-check form-check-inline optioncorrect">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button id="btn-agregar" type="button" class="btn btn-primary">Agregar</button>
+                                </div>
                             </div>
-                            <div class="form-group">                               
-                                <div class="col-sm-7">
-                                   <label for="message-text" class="col-form-label">Respuesta 1:</label>
-                                   <input type="text" class="form-control" id="answer2">
-                               </div>
-                               <div class="col-sm-5">
-                                   <div class="form-check form-check-inline">
-                                      <label class="form-check-label" for="inlineRadio1">Correcta</label>
-                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                      <label class="form-check-label" for="inlineRadio2">Incorrecta</label>
-                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="form-group">                               
-                                <div class="col-sm-7">
-                                   <label for="message-text" class="col-form-label">Respuesta 1:</label>
-                                   <input type="text" class="form-control" id="answer2">
-                               </div>
-                               <div class="col-sm-5">
-                                   <div class="form-check form-check-inline">
-                                      <label class="form-check-label" for="inlineRadio1">Correcta</label>
-                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                      <label class="form-check-label" for="inlineRadio2">Incorrecta</label>
-                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="form-group">                               
-                                <div class="col-sm-7">
-                                   <label for="message-text" class="col-form-label">Respuesta 3:</label>
-                                   <input type="text" class="form-control" id="answer2">
-                               </div>
-                               <div class="col-sm-5">
-                                   <div class="form-check form-check-inline">
-                                      <label class="form-check-label" for="inlineRadio1">Correcta</label>
-                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                      <label class="form-check-label" for="inlineRadio2">Incorrecta</label>
-                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                  </div>
-                              </div>
-                          </div><div class="form-group">                               
-                                <div class="col-sm-7">
-                                   <label for="message-text" class="col-form-label">Respuesta 4:</label>
-                                   <input type="text" class="form-control" id="answer2">
-                               </div>
-                               <div class="col-sm-5">
-                                   <div class="form-check form-check-inline">
-                                      <label class="form-check-label" for="inlineRadio1">Correcta</label>
-                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                      <label class="form-check-label" for="inlineRadio2">Incorrecta</label>
-                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-              </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pregunta-list" class="col-xs-1 col-md-8 pregunta">
+                    <div class="col-xs-10">
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Agregar</button>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="col-xs-1 col-md-8 pregunta">
-    <div class="col-xs-10">
+                        <h2>¿Quién es el actual seleccionador de Rusia?
+                            <small> Nivel 1</small>
+                        </h2>
+                        <p>
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            José Antonio Camacho.</p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 
-        <h2>¿Quién es el actual seleccionador de Rusia?
-            <small> Nivel 1</small>
-        </h2>
-        <p>
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            José Antonio Camacho.</p>
-            <p>
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            Gus Hiddink.</p>
+                        <p>
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 
-                Gus Hiddink.</p>
-                <p>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            Jupp Heynckes.</p>
+                        <p>
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 
-                    Jupp Heynckes.</p>
-                    <p>
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-
-                        Fabio Capello.</p>
+                            Fabio Capello.</p>
                     </div>
                     <div class="col-xs-2">
                         <div class="btn-group" role="group" aria-label="...">
@@ -196,23 +196,20 @@
 
                             </button>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="../js/jquery.min.js"></script>
+        <script src="js/vendor/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/singup.js"></script>
+        <script src="../js/adminPreguntas.js"></script>
 
-    <script>
-    window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')
-    </script>
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/vendor/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-
-</body>
+    </body>
 
 </html>
