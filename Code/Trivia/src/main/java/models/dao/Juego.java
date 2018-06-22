@@ -1,9 +1,12 @@
 package models.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import models.entities.EstadisticasPlayer;
 import models.entities.Jugador;
+import models.entities.Partida;
 import models.entities.Pregunta;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -41,6 +44,12 @@ public class Juego {
         saveHibernate(pregunta);
     }
 
+    /**
+     * Borra la pregunta de la base de datos
+     *
+     * @param pregunta la pregunta a borrar
+     * @throws Exception en el caso de que no exista en la base de datos
+     */
     public void removeQuestion(Pregunta pregunta) throws Exception {
         removeHibernate(pregunta);
     }
@@ -64,6 +73,20 @@ public class Juego {
         }
     }
 
+    /**
+     * Crea una nuevo pregunta
+     *
+     * @param id de la pregunta
+     * @param textoPregunta
+     * @param nivelDificultad
+     * @param respuestaUno
+     * @param respuestaDos
+     * @param respuestaTres
+     * @param respuestaCuatro
+     * @param correcta numero de 1 a 4 indicando que numero de la pregunta es
+     * correcta
+     * @return la si la pregunta se agrego o no
+     */
     public String createQuestion(String id, String textoPregunta, Integer nivelDificultad, String respuestaUno, String respuestaDos, String respuestaTres, String respuestaCuatro, int correcta) {
         Pregunta pregunta = new Pregunta(textoPregunta, nivelDificultad, respuestaUno, respuestaDos, respuestaTres, respuestaCuatro, correcta);
         if (!id.isEmpty()) {
@@ -76,6 +99,31 @@ public class Juego {
             return "No se pudo agregar pregunta";
         }
 
+    }
+
+    public String crearPartida(String id, String nombre, double tiempoPartida, String[] preguntas) {
+        Partida partida = new Partida(nombre, tiempoPartida, new ArrayList<>());
+        if (!id.isEmpty()) {
+            partida.setId(Long.parseLong(id));
+        }
+        ArrayList<Pregunta> preguntaList=new ArrayList();
+        for (int i = 0; i < preguntas.length; i++) {
+            preguntaList.add(getQuestionById(preguntas[i]));            
+        }
+        partida.setPreguntas(preguntaList);
+        try {
+            saveHibernate(partida);
+            return "Pregunta agregada";
+        } catch (Exception ex) {
+            Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+            return "No se pudo agregar pregunta";
+        }
+    }
+
+    public String borrarPartida(String id) {
+        Partida partida = getPartidaById(id);
+        removeHibernate(partida);
+        return "Partida borrada";
     }
 
     /**
@@ -130,6 +178,20 @@ public class Juego {
         Pregunta pregunta = (Pregunta) sessionHibernate.createQuery("from " + Pregunta.class.getName() + " where IDPREGUNTA=" + params).list().get(0);
         sessionHibernate.close();
         return pregunta;
+    }
+
+    public List<Partida> getallPartidas() {
+        sessionHibernate = HibernateUtil.getSessionFactory().openSession();
+        List<Partida> partidas = (List<Partida>) sessionHibernate.createQuery("from " + Partida.class.getName()).list();
+        sessionHibernate.close();
+        return partidas;
+    }
+
+    public Partida getPartidaById(String params) {
+        sessionHibernate = HibernateUtil.getSessionFactory().openSession();
+        Partida partida = (Partida) sessionHibernate.createQuery("from " + Partida.class.getName() + " where ID=" + params).list().get(0);
+        sessionHibernate.close();
+        return partida;
     }
 
     public String deletQustion(String params) {

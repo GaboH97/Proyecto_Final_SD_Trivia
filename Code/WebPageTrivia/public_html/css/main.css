@@ -96,3 +96,7 @@ tbody::-webkit-scrollbar-thumb
 .optioncorrect{
     margin-top: 30px;
 }
+
+.table td, .table th {
+    text-align: center;   
+}

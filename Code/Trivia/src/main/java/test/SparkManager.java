@@ -38,6 +38,19 @@ public class SparkManager {
                 req.queryParams("emailJugador"),
                 req.queryParams("fotoJugador")), JsonUtil.json());
 
+        post("/partida", (req, res) -> juego.crearPartida(
+                req.queryParams("id"),
+                req.queryParams("nombre"),
+                Double.parseDouble(req.queryParams("tiempoPartida")),
+                req.queryParamsValues("preguntas")), JsonUtil.json());
+        get("/partidas", (req, res) -> juego.getallPartidas(), JsonUtil.json());
+        get("/partida/:id", (request, response)
+                -> juego.getPartidaById(request.params(":id")),
+                JsonUtil.json());
+        delete("/partida/:id", (request, response) -> {
+            return juego.borrarPartida(request.params(":id"));
+        }, JsonUtil.json());
+
         get("/questions", (req, res) -> juego.getallQuestions(), JsonUtil.json());
 //        get("/trainners", (req, res) -> juego.getAllTrainners(), JsonUtil.json());
 //        get("/movements", (req, res) -> juego.getAllMovements(), JsonUtil.json());
@@ -53,11 +66,11 @@ public class SparkManager {
 
         get("/question/:id", (request, response) -> {
             return juego.getQuestionById(request.params(":id"));
-        },JsonUtil.json());
-        
+        }, JsonUtil.json());
+
         delete("/question/:id", (request, response) -> {
             return juego.deletQustion(request.params(":id"));
-        },JsonUtil.json());
+        }, JsonUtil.json());
     }
 
     /**
