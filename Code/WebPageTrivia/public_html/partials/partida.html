@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Crear Partida</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <h1>Crea una nueva partida</h1>
+                </div>
+            </div>    
+            <hr>
+            <div class="col-xs-10 col-md-6 col-md-offset-3">
+                <form id="form-partida">
+                    <div class="form-group">
+                        <label for="id" class="col-form-label">Id</label>
+                        <input name="id" class="form-control" id="id" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre" class="col-form-label">Nombre</label>
+                        <input name="nombre" type="text" class="form-control" id="nombre"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="tiempo" class="col-form-label">Tiempo duración </label>
+                        <input name="tiempo" type="number" class="form-control" id="tiempo">
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="col-xs-8 col-md-6 col-md-offset-3">
+                <div class="btn-group " role="group" aria-label="...">
+                    <button id="terminar" type="button" class="btn btn-primary">
+                        Terminar
+                    </button>
+                </div>
+            </div>
+            
+            <div  id="preguntas" class="col-xs-10 col-xs-offset-1 pregunta">
+                <div class="col-xs-8 col-md-6 col-md-offset-3">
+                    <div class="btn-group " role="group" aria-label="...">
+                        <button id="add-question-3" type="button" class="btn btn-primary" data-toggle ="modal" data-target="#addQuestionModal">
+                            Agregar Pregunta
+                        </button>
+                        <button type="button" class="btn btn-success" data-toggle ="modal" data-target="#createQuestionModal">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            Crear Pregunta
+                        </button>
+                    </div>
+                </div>
+                <p>Por favor agrega preguntas </p>
+
+
+
+            </div>
+
+            <!--Modal-->
+
+            <div id="addQuestionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createQuestionModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Agregar Pregunta</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="preguntas-agregar-list" class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <p class="pregunta-text-list">¿Quién es el actual seleccionador de Rusia? <strong>Nivel 1</strong></p>
+                                    </div>
+                                    <div class="col-xs-2 btn-group btn-group-xs">
+                                        <a id="btn-agregar-pregunta" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <p class="pregunta-text-list">¿Quién es el actual seleccionador de Rusia? <strong>Nivel 1</strong></p>
+                                    </div>
+                                    <div class="col-xs-2 btn-group btn-group-xs">
+                                        <a id="btn-agregar-pregunta" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button id="btn-agregar-lista" type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="createQuestionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createQuestionModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Agregar Pregunta</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col-xs-10 col-md-6">
+                                    <form id="form-question">
+                                        <div class="form-group">
+                                            <label for="idPregunta" class="col-form-label">Id</label>
+                                            <input name="idPregunta" class="form-control" id="idPregunta" readonly="readonly"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Pregunta:</label>
+                                            <textarea name="textoPregunta" class="form-control" id="question"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dificultad" class="col-form-label">Dificultad</label>
+                                            <input name="dificultad" type="number" class="form-control" id="dificultad">
+                                        </div>
+                                        <div class="form-group">                               
+                                            <div class="col-sm-7">
+                                                <label for="message-text" class="col-form-label">Respuesta 1:</label>
+                                                <input name="respuestaUno" type="text" class="form-control" id="answer1">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-check form-check-inline optioncorrect">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked="checked">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">                               
+                                            <div class="col-sm-7">
+                                                <label for="message-text" class="col-form-label">Respuesta 2:</label>
+                                                <input name="respuestaDos" type="text" class="form-control" id="answer2">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-check form-check-inline optioncorrect">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">                               
+                                            <div class="col-sm-7">
+                                                <label for="message-text" class="col-form-label">Respuesta 3:</label>
+                                                <input name="respuestaTres" type="text" class="form-control" id="answer3">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-check form-check-inline optioncorrect">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
+
+                                                </div>
+                                            </div>
+                                        </div><div class="form-group">                               
+                                            <div class="col-sm-7">
+                                                <label for="message-text" class="col-form-label">Respuesta 4:</label>
+                                                <input name="respuestaCuatro" type="text" class="form-control" id="answer4">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="form-check form-check-inline optioncorrect">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button id="btn-crear" type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/jquery.min.js"></script>
+
+        <script src="js/vendor/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/singup.js"></script>
+        <script src="../js/partida.js"></script>
+
+    </body>
+</html>

@@ -41,8 +41,8 @@ public class SparkManager {
         post("/partida", (req, res) -> juego.crearPartida(
                 req.queryParams("id"),
                 req.queryParams("nombre"),
-                Double.parseDouble(req.queryParams("tiempoPartida")),
-                req.queryParamsValues("preguntas")), JsonUtil.json());
+                req.queryParams("tiempo"),
+                req), JsonUtil.json());
         get("/partidas", (req, res) -> juego.getallPartidas(), JsonUtil.json());
         get("/partida/:id", (request, response)
                 -> juego.getPartidaById(request.params(":id")),
@@ -55,6 +55,15 @@ public class SparkManager {
 //        get("/trainners", (req, res) -> juego.getAllTrainners(), JsonUtil.json());
 //        get("/movements", (req, res) -> juego.getAllMovements(), JsonUtil.json());
         post("/question", (req, res) -> juego.createQuestion(
+                req.queryParams("idPregunta"),
+                req.queryParams("textoPregunta"),
+                Integer.parseInt(req.queryParams("dificultad")),
+                req.queryParams("respuestaUno"),
+                req.queryParams("respuestaDos"),
+                req.queryParams("respuestaTres"),
+                req.queryParams("respuestaCuatro"),
+                Integer.parseInt(req.queryParams("inlineRadioOptions"))), JsonUtil.json());
+        post("/addquestion", (req, res) -> juego.createQuestionReturnObj(
                 req.queryParams("idPregunta"),
                 req.queryParams("textoPregunta"),
                 Integer.parseInt(req.queryParams("dificultad")),

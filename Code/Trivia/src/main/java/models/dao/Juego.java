@@ -1,7 +1,9 @@
 package models.dao;
 
+import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.entities.EstadisticasPlayer;
@@ -11,6 +13,7 @@ import models.entities.Pregunta;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import persistence.HibernateUtil;
+import spark.Request;
 
 /**
  *
@@ -100,16 +103,32 @@ public class Juego {
         }
 
     }
+    
+        public Pregunta createQuestionReturnObj(String id, String textoPregunta, Integer nivelDificultad, String respuestaUno, String respuestaDos, String respuestaTres, String respuestaCuatro, int correcta) {
+        Pregunta pregunta = new Pregunta(textoPregunta, nivelDificultad, respuestaUno, respuestaDos, respuestaTres, respuestaCuatro, correcta);
+        if (!id.isEmpty()) {
+            pregunta.setIdPregunta(Long.parseLong(id));
+        }
+        try {
+            addQuestion(pregunta);
+            return pregunta;
+        } catch (Exception e) {
+            return null;
+        }
 
-    public String crearPartida(String id, String nombre, double tiempoPartida, String[] preguntas) {
-        Partida partida = new Partida(nombre, tiempoPartida, new ArrayList<>());
+    }
+
+    public String crearPartida(String id, String nombre, String tiempoPartida, Request request) {
+        Partida partida = new Partida(nombre, Double.parseDouble(tiempoPartida), new ArrayList<>());
         if (!id.isEmpty()) {
             partida.setId(Long.parseLong(id));
         }
         ArrayList<Pregunta> preguntaList=new ArrayList();
-        for (int i = 0; i < preguntas.length; i++) {
+        //No se como leer el array que contiene la lista de regutas aqui mori
+        System.out.println("aqui vans "+request.queryMap("preguntas").value());
+        /*for (int i = 0; i < preguntas.length; i++) {
             preguntaList.add(getQuestionById(preguntas[i]));            
-        }
+        }*/
         partida.setPreguntas(preguntaList);
         try {
             saveHibernate(partida);

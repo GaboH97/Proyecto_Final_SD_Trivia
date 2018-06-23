@@ -100,3 +100,12 @@ tbody::-webkit-scrollbar-thumb
 .table td, .table th {
     text-align: center;   
 }
+
+.margin-top-20 {
+    margin-top: 21px;
+}
+
+.border {
+    border-top:solid .1rem rgba(0,0,0,.5);
+    padding: 10px 0;
+}
