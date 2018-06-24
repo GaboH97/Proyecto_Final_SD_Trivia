@@ -109,3 +109,9 @@ tbody::-webkit-scrollbar-thumb
     border-top:solid .1rem rgba(0,0,0,.5);
     padding: 10px 0;
 }
+
+.background-preguntas{
+	 background: url('../img/fondo2.jpg') !important;
+   	 background-size: auto auto;
+    	 background-size: cover !important;
+}

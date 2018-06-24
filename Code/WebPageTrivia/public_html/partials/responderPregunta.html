@@ -1,0 +1,98 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+	<link rel="stylesheet" href="../css/main.css">
+	<title>Trivia Mundialista</title>
+</head>
+<body >
+	<div class="container-fluid background-preguntas">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="game-name">Nombre Partida</h5>
+					 <div class="row justify-content-sm-center">
+						<div class="alert-message col-sm-12"> </div>
+					</div>
+					<button id="btn-cancelar2" type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<form id="form-answerQuestion">
+							<div class="form-group">
+								<label for="idPregunta" class="col-form-label">ID</label>
+								<p id="question-id"class="text-sm-left"></p>
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Pregunta:</label>
+								<p id="question-text"c lass="text-sm-left"></p>
+							</div>
+							<div class="form-group">
+								<label for="dificultad" class="col-form-label">Dificultad</label>
+							</div>
+							<div class="form-group">                               
+								<div class="col-sm-7">
+									<label for="message-text" id ="answer1-text"class="col-form-label">Respuesta 1:</label>
+									<p id="answer1"class="text-sm-left"></p>
+								</div>
+								<div class="col-sm-5">
+									<div class="form-check form-check-inline optioncorrect">
+										<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked="checked">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">                               
+								<div class="col-sm-7">
+									<label for="message-text" id ="answer1-text" class="col-form-label">Respuesta 2:</label>
+									<p id="answer2"class="text-sm-left"></p>
+								</div>
+								<div class="col-sm-5">
+									<div class="form-check form-check-inline optioncorrect">
+										<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">                               
+								<div class="col-sm-7">
+									<label for="message-text" id ="answer3-text" class="col-form-label">Respuesta 3:</label>
+									<p id="answer3"class="text-sm-left"></p>
+								</div>
+								<div class="col-sm-5">
+									<div class="form-check form-check-inline optioncorrect">
+										<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
+
+									</div>
+								</div>
+							</div><div class="form-group">                               
+							<div class="col-sm-7">
+								<label for="message-text" id ="answer4-message" class="col-form-label">Respuesta 4:</label>
+								<p id="answer4"class="text-sm-left"></p>
+							</div>
+							<div class="col-sm-5">
+								<div class="form-check form-check-inline optioncorrect">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary answer-question">Enviar</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/responderPregunta.js"></script>
+</html>
