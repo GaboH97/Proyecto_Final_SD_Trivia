@@ -118,17 +118,16 @@ public class Juego {
 
     }
 
-    public String crearPartida(String id, String nombre, String tiempoPartida, Request request) {
-        Partida partida = new Partida(nombre, Double.parseDouble(tiempoPartida), new ArrayList<>());
+    public String crearPartida(String id, String nombre, String tiempoPartida, ArrayList<String> idPreguntas) {
+        Partida partida = new Partida(nombre, Integer.parseInt(tiempoPartida), new ArrayList<>());
         if (!id.isEmpty()) {
             partida.setId(Long.parseLong(id));
         }
         ArrayList<Pregunta> preguntaList=new ArrayList();
-        //No se como leer el array que contiene la lista de regutas aqui mori
-        System.out.println("aqui vans "+request.queryMap("preguntas").value());
-        /*for (int i = 0; i < preguntas.length; i++) {
-            preguntaList.add(getQuestionById(preguntas[i]));            
-        }*/
+        for (String idPregunta : idPreguntas) {
+            System.out.println("id pre+ "+idPregunta);
+            preguntaList.add(getQuestionById(idPregunta));
+        }
         partida.setPreguntas(preguntaList);
         try {
             saveHibernate(partida);

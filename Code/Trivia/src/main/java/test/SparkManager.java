@@ -2,9 +2,11 @@ package test;
 
 import static spark.Spark.*;
 import com.google.gson.Gson;
+import java.util.ArrayList;
 import javax.servlet.DispatcherType;
 import models.dao.Juego;
 import persistence.JsonUtil;
+import spark.Request;
 
 /**
  * This class handles incoming requests from a server using Spark Framework
@@ -38,11 +40,22 @@ public class SparkManager {
                 req.queryParams("emailJugador"),
                 req.queryParams("fotoJugador")), JsonUtil.json());
 
-        post("/partida", (req, res) -> juego.crearPartida(
-                req.queryParams("id"),
-                req.queryParams("nombre"),
-                req.queryParams("tiempo"),
-                req), JsonUtil.json());
+        post("/partida", (req, res) -> {
+            String body = req.body();
+            String nombre = JsonUtil.getText(body, "nombre=");
+            System.out.println(nombre);
+            String id = JsonUtil.getText(body, "id=");
+            System.out.println(id);
+            String tiempo = JsonUtil.getText(body, "atiempo=");
+            System.out.println(tiempo);
+            System.out.println(body);
+            ArrayList<String> idsPreguntas = JsonUtil.getIds(body + "&", "preguntas%5B%5D=");
+            return juego.crearPartida(
+                    id,
+                    nombre,
+                    tiempo,
+                    idsPreguntas);
+        }, JsonUtil.json());
         get("/partidas", (req, res) -> juego.getallPartidas(), JsonUtil.json());
         get("/partida/:id", (request, response)
                 -> juego.getPartidaById(request.params(":id")),

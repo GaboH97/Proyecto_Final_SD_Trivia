@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 
-  var preguntaID = 2;
+  var preguntaID = 25;
   var startGameTimeStamp = Date.now();
   var startAnswerTimestamp;
   var endAnswerTimestamp; 

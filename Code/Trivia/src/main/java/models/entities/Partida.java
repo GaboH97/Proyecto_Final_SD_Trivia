@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,16 +21,16 @@ public class Partida {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nombre;
-    private double tiempoPartida;
+    private int tiempoPartida;
     //private double promedioTiempoParticipantes;
     //private List<EstadisticasPlayer> estadisticas;
-    @OneToMany
+    @ManyToMany
     private List<Pregunta> preguntas;
 
     public Partida() {
     }
 
-    public Partida(String nombre, double tiempoPartida, List<Pregunta> preguntas) {
+    public Partida(String nombre, int tiempoPartida, List<Pregunta> preguntas) {
         this.nombre = nombre;
         this.tiempoPartida = tiempoPartida;
         this.preguntas = preguntas;
@@ -51,11 +52,11 @@ public class Partida {
         this.nombre = nombre;
     }
 
-    public double getTiempoPartida() {
+    public int getTiempoPartida() {
         return tiempoPartida;
     }
 
-    public void setTiempoPartida(double tiempoPartida) {
+    public void setTiempoPartida(int tiempoPartida) {
         this.tiempoPartida = tiempoPartida;
     }
 
