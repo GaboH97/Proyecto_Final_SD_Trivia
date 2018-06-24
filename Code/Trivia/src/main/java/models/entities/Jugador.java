@@ -14,7 +14,8 @@ public class Jugador {
 
     //===============Attributes===============
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_Sequence")
+    @SequenceGenerator(name = "id_Sequence", sequenceName = "PLAYER_ID_SEQ")
     private Long id;
     private String nombreUsuario;
     private String contrasenaUsuario;
@@ -86,6 +87,11 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "Player{" + "nombreUsuario=" + nombreUsuario + ", contrasenaUsuario=" + contrasenaUsuario + ", email=" + email + ", fotoOAvatar=" + fotoJugador + '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("Jugador ID: ").append(getId()).append(builder).append("\n");
+        builder.append("Nombre: ").append(getNombreUsuario()).append(builder).append("\n");
+        builder.append("Contraseña: ").append(getContrasenaUsuario()).append(builder).append("\n");
+
+        return builder.toString();
     }
 }

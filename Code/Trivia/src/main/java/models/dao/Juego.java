@@ -1,19 +1,15 @@
 package models.dao;
 
-import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.entities.EstadisticasPlayer;
 import models.entities.Jugador;
 import models.entities.Partida;
 import models.entities.Pregunta;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import persistence.HibernateUtil;
-import spark.Request;
 
 /**
  *
@@ -103,8 +99,8 @@ public class Juego {
         }
 
     }
-    
-        public Pregunta createQuestionReturnObj(String id, String textoPregunta, Integer nivelDificultad, String respuestaUno, String respuestaDos, String respuestaTres, String respuestaCuatro, int correcta) {
+
+    public Pregunta createQuestionReturnObj(String id, String textoPregunta, Integer nivelDificultad, String respuestaUno, String respuestaDos, String respuestaTres, String respuestaCuatro, int correcta) {
         Pregunta pregunta = new Pregunta(textoPregunta, nivelDificultad, respuestaUno, respuestaDos, respuestaTres, respuestaCuatro, correcta);
         if (!id.isEmpty()) {
             pregunta.setIdPregunta(Long.parseLong(id));
@@ -123,9 +119,9 @@ public class Juego {
         if (!id.isEmpty()) {
             partida.setId(Long.parseLong(id));
         }
-        ArrayList<Pregunta> preguntaList=new ArrayList();
+        ArrayList<Pregunta> preguntaList = new ArrayList();
         for (String idPregunta : idPreguntas) {
-            System.out.println("id pre+ "+idPregunta);
+            System.out.println("id pre+ " + idPregunta);
             preguntaList.add(getQuestionById(idPregunta));
         }
         partida.setPreguntas(preguntaList);
@@ -206,6 +202,7 @@ public class Juego {
     }
 
     public Partida getPartidaById(String params) {
+        System.out.println("IDdfdsfdsfdsfdfdfds  " + params);
         sessionHibernate = HibernateUtil.getSessionFactory().openSession();
         Partida partida = (Partida) sessionHibernate.createQuery("select id,nombre,tiempoPartida from " + Partida.class.getName() + " where ID=" + params).list().get(0);
         System.out.println(partida.toString());

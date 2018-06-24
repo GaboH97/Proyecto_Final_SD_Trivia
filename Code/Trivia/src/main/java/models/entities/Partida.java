@@ -9,8 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
 import org.hibernate.annotations.Cascade;
@@ -23,7 +22,8 @@ import org.hibernate.annotations.Cascade;
 public class Partida {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_Sequence")
+    @SequenceGenerator(name = "id_Sequence", sequenceName = "GAME_ID_SEQ")
     private Long id;
     private String nombre;
     private int tiempoPartida;
@@ -75,7 +75,15 @@ public class Partida {
 
     @Override
     public String toString() {
-        return "Partida{" + "id=" + id + ", nombre=" + nombre + ", tiempoPartida=" + tiempoPartida + ", preguntas=" + preguntas + '}';
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("Partida ID: ").append(getId()).append(builder).append("\n");
+        builder.append("Nombre: ").append(getNombre()).append(builder).append("\n");
+        builder.append("Tiempo: ").append(getTiempoPartida()).append(builder).append("\n");
+        for (Pregunta pregunta : getPreguntas()) {
+            builder.append(pregunta.toString());
+        }
+        return builder.toString();
     }
 
 }

@@ -3,10 +3,8 @@ package test;
 import static spark.Spark.*;
 import com.google.gson.Gson;
 import java.util.ArrayList;
-import javax.servlet.DispatcherType;
 import models.dao.Juego;
 import persistence.JsonUtil;
-import spark.Request;
 
 /**
  * This class handles incoming requests from a server using Spark Framework
