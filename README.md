@@ -1,7 +1,7 @@
 ﻿# Proyecto Final SD Trivia
 
 **Mockups (Ventanas) Proyecto**
-  
+
 - [x] Login
 - [x] Registro Usuario
 - [ ] Dashboard Administrador
@@ -15,5 +15,11 @@
    - [ ] Alerta de "Respuesta correcta o incorrecta"
 - [ ] Diálogo ver Ranking
 - [ ] Diálogo generar reporte
-   
-  
+
+**Diagramas de secuencia**
+
+- [x] SQ_001_Registrarse
+- [x] SQ_002_login
+- [x] SQ_003_crud_partidas_preguntas
+- [x] SQ_004_unirse/jugar_a_partida
+- [x] SQ_005_Mostrar/imprimir_reporte_de_preguntas_o_ranking
