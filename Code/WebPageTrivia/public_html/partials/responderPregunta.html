@@ -17,7 +17,7 @@
 					<div class="row col-sm-12"> 
 						<h3 class="text-sm-left">Progreso<h3>
 						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50"aria-valuemin="0" aria-valuemax="100">50%</div>
+							<div  id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"aria-valuemin="0" aria-valuemax="100">0%</div>
 						</div>
 					</div>
 					<div class="row">
@@ -98,6 +98,7 @@
 			<div class="modal-footer">
 				<button id ="answer-question" type="button" class="btn btn-primary" >Enviar</button>
 				<button id ="next-question" type="button" class="btn btn-success mybtn-hidden">Siguiente Pregunta</button>
+				<button id ="finalize-trivia" type="button" class="btn btn-success mybtn-hidden">Terminar</button>
 			</div>
 		</div>
 	</div>
@@ -106,5 +107,5 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<script src="../js/responderPregunta.js"></script>
+<script src="../js/responderPreguntas.js"></script>
 </html>

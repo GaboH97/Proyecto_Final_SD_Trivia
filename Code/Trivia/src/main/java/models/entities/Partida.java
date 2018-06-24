@@ -6,8 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -18,7 +17,8 @@ import javax.persistence.Table;
 public class Partida {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_Sequence")
+    @SequenceGenerator(name = "id_Sequence", sequenceName = "GAME_ID_SEQ")
     private Long id;
     private String nombre;
     private int tiempoPartida;
@@ -67,5 +67,20 @@ public class Partida {
     public void setPreguntas(List<Pregunta> preguntas) {
         this.preguntas = preguntas;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Partida ID: ").append(getId()).append(builder).append("\n");
+        builder.append("Nombre: ").append(getNombre()).append(builder).append("\n");
+        builder.append("Tiempo: ").append(getTiempoPartida()).append(builder).append("\n");
+        for (Pregunta pregunta : getPreguntas()) {
+            builder.append(pregunta.toString());
+        }
+        return builder.toString();
+    }
+    
+    
+    
 
 }

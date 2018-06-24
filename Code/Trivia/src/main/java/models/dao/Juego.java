@@ -1,19 +1,15 @@
 package models.dao;
 
-import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.entities.EstadisticasPlayer;
 import models.entities.Jugador;
 import models.entities.Partida;
 import models.entities.Pregunta;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import persistence.HibernateUtil;
-import spark.Request;
 
 /**
  *
@@ -206,8 +202,10 @@ public class Juego {
     }
 
     public Partida getPartidaById(String params) {
+        System.out.println("IDdfdsfdsfdsfdfdfds  "+params);
         sessionHibernate = HibernateUtil.getSessionFactory().openSession();
         Partida partida = (Partida) sessionHibernate.createQuery("from " + Partida.class.getName() + " where ID=" + params).list().get(0);
+        System.out.println(partida.toString());
         sessionHibernate.close();
         return partida;
     }

@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class Pregunta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "id_Sequence")
-    @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_Sequence")
+    @SequenceGenerator(name = "id_Sequence", sequenceName = "QUESTION_ID_SEQ")
     private Long idPregunta;
     private String textoPregunta;
     private Integer nivelDificultad;
@@ -28,8 +28,7 @@ public class Pregunta {
 
     public Pregunta() {
     }
-    
-    
+
     public Pregunta(String textoPregunta, Integer nivelDificultad, String respuestaUno, String respuestaDos, String respuestaTres, String respuestaCuatro, int correcta) {
         this.textoPregunta = textoPregunta;
         this.nivelDificultad = nivelDificultad;
@@ -106,11 +105,16 @@ public class Pregunta {
 
     @Override
     public String toString() {
-        return "Pregunta{" + "idPregunta=" + idPregunta + ", textoPregunta=" + textoPregunta + ", nivelDificultad=" + nivelDificultad + ", respuestaUno=" + respuestaUno + ", respuestaDos=" + respuestaDos + ", respuestaTres=" + respuestaTres + ", respuestaCuatro=" + respuestaCuatro + ", correcta=" + correcta + '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("Pregunta ID: ").append(getIdPregunta()).append(builder).append("\n");
+        builder.append("Nivel: ").append(getNivelDificultad()).append(builder).append("\n");
+        builder.append("Texto Pregunta: ").append(getTextoPregunta()).append(builder).append("\n");
+        builder.append("Respuesta 1: ").append(getRespuestaUno()).append(builder).append("\n");
+        builder.append("Respuesta 2: ").append(getRespuestaDos()).append(builder).append("\n");
+        builder.append("Respuesta 3: ").append(getRespuestaTres()).append(builder).append("\n");
+        builder.append("Respuesta 4: ").append(getRespuestaCuatro()).append(builder).append("\n");
+        builder.append("Opción correcta: ").append(getCorrecta()).append(builder).append("\n");
+        return builder.toString();
     }
-    
-
-    
-    
 
 }

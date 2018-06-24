@@ -117,5 +117,5 @@ tbody::-webkit-scrollbar-thumb
 }
 
 .mybtn-hidden{
-	visibility:hidden;
+	display:none;
 }

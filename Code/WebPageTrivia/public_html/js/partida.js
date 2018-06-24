@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    getPartida();
+
+    //getPartida();
     var numPreguntas = 1;
     var partidaData;
     function getPartida(id) {
@@ -107,8 +108,8 @@ $(document).ready(function () {
             data: partidaData,
             success: function (result) {
                 if (result !== null || result !== undefined) {
-                    
-                    location.href = "adminPartidas.html";
+                    console.log("Percho");
+                   // location.href = "adminPartidas.html";
                 } else {
                     $("#alert").html("");
                     $("#alert").append('<div class="alert alert-danger"><strong>Error:  </strong>' + result + '</div>');
@@ -119,6 +120,7 @@ $(document).ready(function () {
             }
         });
     });
+
     function addPregunta(id) {
 
         if (partidaData === undefined) {
