@@ -6,13 +6,36 @@ $(document).ready(function () {
   var percentageIncrement = 0;
 
   var partidaID = 1;
-  var startGameTimeStamp = Date.now();
+
+  var startGameTimeStamp;
+
   var startAnswerTimestamp;
-  var endAnswerTimestamp; 
+  var endAnswerTimestamp;
+  var tiempoLimitePregunta;
+  var tiempoLimitePartida;
+
   var totalTimeAnswer = 0;  
   var totalTimeGame = 0;
+
+  var puntaje = 0;
+  var puntajePregunta = 0;
+
+  var respuestasCorrectas = 0;
+
   var pregunta;
   var partida;
+
+  var estadisticasPregunta={
+    pregunta : {},
+    esCorrecta : false,
+    tiempoRespuesta: 0
+  }
+
+  var estadisticas = {
+    "idPartida" : 0,
+    "estadisticasPregunta" :[],
+    "esCorrecta" : false
+  };
 
 
   getPartida(partidaID);
@@ -27,13 +50,25 @@ $(document).ready(function () {
     var answer = $('input[name=inlineRadioOptions]:checked').attr('value');
     var type, alertHeader, message;
     if(answer == pregunta.correcta){
+      estadisticasPregunta.esCorrecta = false;
       type = 'success';
       alertHeader= '¡Bien!';
       message = 'Respuesta correcta';
-    }else{   
+      puntajePregunta += 10;
+      if(totalTimeAnswer > tiempoLimitePregunta &&  totalTimeAnswer <= (tiempoLimitePregunta + 5)){
+        console.log("respondio 5 segundos después");
+        puntajePregunta -= 1
+      }else if(totalTimeAnswer > tiempoLimitePregunta &&  totalTimeAnswer > (tiempoLimitePregunta + 5) && totalTimeAnswer <= (tiempoLimitePregunta + 10) ){
+        puntajePregunta -= 2;
+        console.log("respondio 10 segundos después");
+      }
+      respuestasCorrectas++;
+    }else{
+      estadisticasPregunta.esCorrecta  = false;   
       type = 'danger';
       alertHeader= '¡Mal!'
       message = 'Respuesta incorrecta';
+      puntajePregunta = -2;
     }
 
     var alertType = 'alert-'+ type;
@@ -58,6 +93,12 @@ $(document).ready(function () {
     $('#progress-bar').html('');
     $('#progress-bar').append(progress+'%');
 
+    puntaje += puntajePregunta;
+
+    console.log("Puntaje pregunta: "+puntajePregunta+" Puntaje Total "+puntaje);
+
+    puntajePregunta = 0;
+
   });
 
 
@@ -65,6 +106,7 @@ $('#next-question').on('click', function (e) {
 
   $('input[name=inlineRadioOptions]').attr('disabled',false);
 
+  estadisticas.estadisticasPregunta.push(estadisticasPregunta);
   if(preguntaIndex<partida.preguntas.length){
     console.log("Index es "+preguntaIndex+". "+partida.preguntas.length);
     $('#next-question').addClass('mybtn-hidden');
@@ -74,10 +116,9 @@ $('#next-question').on('click', function (e) {
     
   }else{
     alert("ya se acabó");
-      stopGame();
-    }
-  });
-
+    stopGame();
+  }
+});
 
 function getPregunta(id) {
   $.ajax({
@@ -100,11 +141,24 @@ function getPartida(id) {
       partida = data;
       $('#game-name').html('');
       $('#game-name').html('<strong>'+partida.nombre+'<strong>');
-      pregunta = partida.preguntas[preguntaIndex];
-      llenarDialogoResponderPregunta(pregunta);
-      setUpProgressBar();
+      setUpGame();
     }
   });
+}
+
+function setUpGame(){
+ startGameTimeStamp = Date.now();
+
+ pregunta = partida.preguntas[preguntaIndex];
+ tiempoLimitePartida = partida.tiempoPartida;
+ tiempoLimitePregunta = tiempoLimitePartida/partida.preguntas.length;
+
+ console.log("Tiempo Partida "+tiempoLimitePartida+"Tiempo pregunta "+tiempoLimitePregunta);
+ llenarDialogoResponderPregunta(pregunta);
+ setUpProgressBar();
+ estadisticasPregunta.pregunta = pregunta;
+ estadisticas.idPartida = partida.id;
+
 }
 
 function setUpProgressBar(){
@@ -112,9 +166,13 @@ function setUpProgressBar(){
 }
 
 function stopGame(){
-    $('#answer-question').addClass('mybtn-hidden');
-    $('#next-question').addClass('mybtn-hidden');
-    $('#finalize-trivia').removeClass('mybtn-hidden');  
+  $('#answer-question').addClass('mybtn-hidden');
+  $('#next-question').addClass('mybtn-hidden');
+  $('#finalize-trivia').removeClass('mybtn-hidden');
+
+  estadisticas.estadisticasPregunta[preguntaIndex].tiempoTotalJuego = totalTimeGame;
+
+  console.log(estadisticas); 
 }
 
 function llenarDialogoResponderPregunta(data) {
@@ -141,7 +199,11 @@ function llenarDialogoResponderPregunta(data) {
 
     endAnswerTimestamp = Date.now();
 
-    totalTimeAnswer = endAnswerTimestamp - startAnswerTimestamp;
+    var diff = endAnswerTimestamp - startAnswerTimestamp;
+
+    totalTimeAnswer = Math.floor((diff % (1000 * 60)) / 1000);
+
+    estadisticasPregunta.tiempoRespuesta = totalTimeAnswer;
 
     console.log('Se gastó '+totalTimeAnswer+' segundos'); 
 
@@ -150,13 +212,10 @@ function llenarDialogoResponderPregunta(data) {
   }
 
   var x = setInterval(function() {
-
-
-
   // Get todays date and time
   var now = Date.now();
 
-  console.log("tiempito "+totalTimeGame+"-> "+now)
+  //console.log("tiempito "+totalTimeGame+"-> "+now)
 
   // Find the distance between now an the count down date
   var distance = now - startGameTimeStamp;

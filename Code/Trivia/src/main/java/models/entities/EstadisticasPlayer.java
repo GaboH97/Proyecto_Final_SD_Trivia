@@ -16,5 +16,8 @@ public class EstadisticasPlayer {
     private double porcRespuestasCorrectas;
     private double porcRespuestasIncorrectas;
     private double tiempoGastado;
+    
+    
+    
 
 }
