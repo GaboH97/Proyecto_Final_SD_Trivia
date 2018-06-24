@@ -1,5 +1,10 @@
 package models.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -9,6 +14,7 @@ import models.entities.Partida;
 import models.entities.Pregunta;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import persistence.HibernateUtil;
 
 /**
@@ -188,6 +194,7 @@ public class Juego {
     }
 
     public Pregunta getQuestionById(String params) {
+        System.out.println("ID " + params);
         sessionHibernate = HibernateUtil.getSessionFactory().openSession();
         Pregunta pregunta = (Pregunta) sessionHibernate.createQuery("from " + Pregunta.class.getName() + " where IDPREGUNTA=" + params).list().get(0);
         sessionHibernate.close();
@@ -196,7 +203,25 @@ public class Juego {
 
     public List<Partida> getallPartidas() {
         sessionHibernate = HibernateUtil.getSessionFactory().openSession();
-        List<Partida> partidas = (List<Partida>) sessionHibernate.createQuery("from " + Partida.class.getName()).list();
+        String hql = "SELECT P.id FROM " + Partida.class.getName() + " P";
+        Query query = sessionHibernate.createQuery(hql);
+        List id = query.list();
+        hql = "SELECT P.nombre FROM " + Partida.class.getName() + " P";
+        query = sessionHibernate.createQuery(hql);
+        List name = query.list();
+        hql = "SELECT P.tiempoPartida FROM " + Partida.class.getName() + " P";
+        query = sessionHibernate.createQuery(hql);
+        List tiempo = query.list();
+        List<Partida> partidas = new ArrayList<>();
+        Partida partida = new Partida();
+
+        for (int i = 0; i < tiempo.size(); i++) {
+            partida.setId((Long) id.get(i));
+            partida.setNombre((String) name.get(i));
+            partida.setTiempoPartida((int) tiempo.get(i));
+            partidas.add(partida);
+        }
+
         sessionHibernate.close();
         return partidas;
     }
@@ -204,10 +229,38 @@ public class Juego {
     public Partida getPartidaById(String params) {
         System.out.println("IDdfdsfdsfdsfdfdfds  " + params);
         sessionHibernate = HibernateUtil.getSessionFactory().openSession();
-        Partida partida = (Partida) sessionHibernate.createQuery("select id,nombre,tiempoPartida from " + Partida.class.getName() + " where ID=" + params).list().get(0);
-        System.out.println(partida.toString());
+        Partida partida = (Partida) sessionHibernate.createQuery("from " + Partida.class.getName() + " where ID=" + params).list().get(0);
         sessionHibernate.close();
         return partida;
+    }
+
+    public List<Pregunta> getListPreguntasPorPartida(String idPartida) {
+        List<Pregunta> preguntas = new ArrayList<>();
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "trivia", "123");
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT PREGUNTAS_IDPREGUNTA FROM TRIVIA.PARTIDAS_PREGUNTAS WHERE PARTIDA_ID=1");
+            sessionHibernate = HibernateUtil.getSessionFactory().openSession();
+
+            while (rs.next()) {
+                preguntas.add(getQuestionById(rs.getString("PREGUNTAS_IDPREGUNTA")));
+            }
+            sessionHibernate.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return preguntas;
     }
 
     public String deletQustion(String params) {

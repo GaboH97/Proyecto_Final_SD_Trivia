@@ -40,6 +40,7 @@ public class SparkManager {
 
         post("/partida", (req, res) -> {
             String body = req.body();
+            System.out.println("body" + body);
             String nombre = JsonUtil.getText(body, "nombre=");
             String id = JsonUtil.getText(body, "id=");
             String tiempo = JsonUtil.getText(body, "atiempo=");
@@ -50,6 +51,10 @@ public class SparkManager {
                     tiempo,
                     idsPreguntas);
         }, JsonUtil.json());
+
+        get("/partidapreguntalist/:id", (req, res) -> juego.getListPreguntasPorPartida(req.params(":id")),
+                 JsonUtil.json());
+
         get("/partidas", (req, res) -> juego.getallPartidas(), JsonUtil.json());
         get("/partida/:id", (request, response)
                 -> juego.getPartidaById(request.params(":id")),
