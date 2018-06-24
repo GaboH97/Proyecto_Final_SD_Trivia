@@ -43,12 +43,8 @@ public class SparkManager {
         post("/partida", (req, res) -> {
             String body = req.body();
             String nombre = JsonUtil.getText(body, "nombre=");
-            System.out.println(nombre);
             String id = JsonUtil.getText(body, "id=");
-            System.out.println(id);
             String tiempo = JsonUtil.getText(body, "atiempo=");
-            System.out.println(tiempo);
-            System.out.println(body);
             ArrayList<String> idsPreguntas = JsonUtil.getIds(body + "&", "preguntas%5B%5D=");
             return juego.crearPartida(
                     id,

@@ -207,7 +207,8 @@ public class Juego {
 
     public Partida getPartidaById(String params) {
         sessionHibernate = HibernateUtil.getSessionFactory().openSession();
-        Partida partida = (Partida) sessionHibernate.createQuery("from " + Partida.class.getName() + " where ID=" + params).list().get(0);
+        Partida partida = (Partida) sessionHibernate.createQuery("select id,nombre,tiempoPartida from " + Partida.class.getName() + " where ID=" + params).list().get(0);
+        System.out.println(partida.toString());
         sessionHibernate.close();
         return partida;
     }

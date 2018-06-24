@@ -1,14 +1,19 @@
 package models.entities;
 
 import java.util.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -24,7 +29,7 @@ public class Partida {
     private int tiempoPartida;
     //private double promedioTiempoParticipantes;
     //private List<EstadisticasPlayer> estadisticas;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Pregunta> preguntas;
 
     public Partida() {
@@ -66,6 +71,11 @@ public class Partida {
 
     public void setPreguntas(List<Pregunta> preguntas) {
         this.preguntas = preguntas;
+    }
+
+    @Override
+    public String toString() {
+        return "Partida{" + "id=" + id + ", nombre=" + nombre + ", tiempoPartida=" + tiempoPartida + ", preguntas=" + preguntas + '}';
     }
 
 }
