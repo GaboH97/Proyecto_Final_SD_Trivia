@@ -1,20 +1,21 @@
 $(document).ready(function () {
 
-  getPregunta(30);
 
+  var preguntaID = 2;
+  var startGameTimeStamp = Date.now();
   var startAnswerTimestamp;
-  var endAnswerTimestamp;
-  var totalTime;
-
+  var endAnswerTimestamp; 
+  var totalTimeAnswer = 0;  
+  var totalTimeGame = 0;
   var pregunta;
+
+  getPregunta(preguntaID);
   
-  $('.answer-question').on('click', function (e) {
-    
+
+  $('#answer-question').on('click', function (e) {
+
     detenerTimer();
 
-    $(this).text('Siguiente pregunta');
-    $(this).removeClass('answer-question').addClass('next-question');
-    $(this).removeClass('btn btn-primary').addClass('btn btn-success');
     var answer = $('input[name=inlineRadioOptions]:checked').attr('value');
     var type, alertHeader, message;
     if(answer == pregunta.correcta){
@@ -35,6 +36,19 @@ $(document).ready(function () {
 
     $(".alert-message .alert").first().hide().fadeIn(200).delay(1000).fadeOut(500, function () { $(this).remove(); });
 
+    $('#next-question').removeClass('mybtn-hidden');
+    $('#answer-question').addClass('mybtn-hidden');
+
+    preguntaID++;
+
+});
+
+
+  $('#next-question').on('click', function (e) {
+    getPregunta(preguntaID);
+
+    $('#next-question').addClass('mybtn-hidden');
+    $('#answer-question').removeClass('mybtn-hidden');
 
 });
 
@@ -56,27 +70,52 @@ function llenarDialogoResponderPregunta(data) {
     console.log(data);
     $("#question-id").text(data.idPregunta);
     $("#question-text").text(data.textoPregunta);
-    $("#dificultad").text(data.nivelDificultad);
+    $("#dificultad").text('Nivel '+data.nivelDificultad);
     $("#answer1").text(data.respuestaUno);
     $("#answer2").text(data.respuestaDos);
     $("#answer3").text(data.respuestaTres);
     $("#answer4").text(data.respuestaCuatro);
     $("#inlineRadio" + data.inlineRadio1).prop("checked", true);
+    //$("#total-time-game").text('Tiempo de juego: '+totalTimeGame+'s');
     comenzarTimer();
 }
 
 function comenzarTimer(){
+    totalTimeAnswer = 0;
     startAnswerTimestamp = Date.now();
+    endAnswerTimestamp = startAnswerTimestamp; 
 }
 
 function detenerTimer(){
+
     endAnswerTimestamp = Date.now();
 
-    totalTime = Math.floor(endAnswerTimestamp / 1000) - Math.floor(startAnswerTimestamp / 1000);
+    totalTimeAnswer = endAnswerTimestamp - startAnswerTimestamp;
 
-    console.log('Se gastó '+totalTime+' segundos'); 
+    console.log('Se gastó '+totalTimeAnswer+' segundos'); 
+
+    totalTimeGame += totalTimeAnswer;
+
 }
 
+var x = setInterval(function() {
 
+
+
+  // Get todays date and time
+  var now = Date.now();
+
+  console.log("tiempito "+totalTimeGame+"-> "+now)
+
+  // Find the distance between now an the count down date
+  var distance = now - startGameTimeStamp;
+
+  // Time calculations for days, hours, minutes and seconds
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  $('#total-time-game').text("Tiempo de juego: "+minutes + "m " + seconds + "s ");
+}, 1000);
 
 });

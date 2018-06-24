@@ -115,3 +115,7 @@ tbody::-webkit-scrollbar-thumb
    	 background-size: auto auto;
     	 background-size: cover !important;
 }
+
+.mybtn-hidden{
+	visibility:hidden;
+}
