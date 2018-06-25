@@ -2,7 +2,12 @@ package test;
 
 import static spark.Spark.*;
 import com.google.gson.Gson;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletResponse;
 import models.dao.Juego;
 import persistence.JsonUtil;
 
@@ -53,7 +58,7 @@ public class SparkManager {
         }, JsonUtil.json());
 
         get("/partidapreguntalist/:id", (req, res) -> juego.getListPreguntasPorPartida(req.params(":id")),
-                 JsonUtil.json());
+                JsonUtil.json());
 
         get("/partidas", (req, res) -> juego.getallPartidas(), JsonUtil.json());
         get("/partida/:id", (request, response)
@@ -62,6 +67,23 @@ public class SparkManager {
         delete("/partida/:id", (request, response) -> {
             return juego.borrarPartida(request.params(":id"));
         }, JsonUtil.json());
+
+        get("/pdf", (request, response) -> {
+            try {
+                Path path = Paths.get("C:/Users/JuanDiegost/Desktop/a.pdf");
+                byte[] data = Files.readAllBytes(path);
+
+                HttpServletResponse httpServletResponse = response.raw();
+                httpServletResponse.setContentType("application/pdf");
+                httpServletResponse.addHeader("Content-Disposition", "inline; filename=mypdf.pdf");
+                httpServletResponse.getOutputStream().write(data);
+                httpServletResponse.getOutputStream().close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "";
+        });
 
         get("/questions", (req, res) -> juego.getallQuestions(), JsonUtil.json());
 //        get("/trainners", (req, res) -> juego.getAllTrainners(), JsonUtil.json());
