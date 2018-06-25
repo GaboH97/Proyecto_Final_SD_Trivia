@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -26,6 +25,7 @@ public class Partida {
     @SequenceGenerator(name = "id_Sequence", sequenceName = "GAME_ID_SEQ")
     private Long id;
     private String nombre;
+    private Long startTime;
     private int tiempoPartida;
     //private double promedioTiempoParticipantes;
     //private List<EstadisticasPlayer> estadisticas;
@@ -39,6 +39,7 @@ public class Partida {
         this.nombre = nombre;
         this.tiempoPartida = tiempoPartida;
         this.preguntas = preguntas;
+        startTime = System.currentTimeMillis();
     }
 
     public Long getId() {
@@ -71,6 +72,14 @@ public class Partida {
 
     public void setPreguntas(List<Pregunta> preguntas) {
         this.preguntas = preguntas;
+    }
+
+    public Long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Long startTime) {
+        this.startTime = startTime;
     }
 
     @Override

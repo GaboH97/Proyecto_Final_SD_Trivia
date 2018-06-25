@@ -146,12 +146,36 @@ function getPartida(id) {
 
       // CLOCK SYNCHRONIZATION
 
+
+
+
       console.log(partida);
       $('#game-name').html('');
       $('#game-name').html('<strong>'+partida.nombre+'<strong>');
       getListPreguntas(id);    
     }
   });
+}
+
+
+
+function openModalWait(){
+  var x = setInterval(function() {
+  // Get todays date and time
+  var now = Date.now();
+
+  //console.log("tiempito "+totalTimeGame+"-> "+now)
+
+  // Find the distance between now an the count down date
+  var distance = now - startGameTimeStamp;
+
+  // Time calculations for days, hours, minutes and seconds
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  $('#total-time-game').text("Tiempo de juego: "+minutes + "m " + seconds + "s ");
+}, 1000);
 }
 
 
@@ -172,6 +196,7 @@ function setUpStats(idPartida){
     data : stats,
     success: function (data) {
       timeToServer = data;
+      openModalWait();
       console.log("This is time: "+timeToServer);
     }
   });

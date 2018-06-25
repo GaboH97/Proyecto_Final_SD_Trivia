@@ -77,6 +77,7 @@ public class SparkManager {
             return "Estadísticas guardadas";
         }, JsonUtil.json());
         
+        get("/getTime", (req, res) -> System.currentTimeMillis());
 
         get("/partidapreguntalist/:id", (req, res) -> juego.getListPreguntasPorPartida(req.params(":id")),
                 JsonUtil.json());

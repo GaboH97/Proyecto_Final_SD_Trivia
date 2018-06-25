@@ -32,8 +32,44 @@ $(document).ready(function () {
 
 	}
 
+	function setTimer(tiempoPartida){
+		$.ajax({
+			url: 'https://'+serverIP+'/getTime',
+			type: 'GET',
+			success: function (data) {
+
+				var timeToWait = 120000-(data - tiempoPartida);
+				console.log('tengo que es perar '+timeToWait);
+				if(timeToWait>0){
+					$('#modalWait').modal('show'); 
+					setTimeout(function(){
+						localStorage.setItem('idPartida',id);
+						location.href = "partials/responderPregunta.html";
+					},timeToWait);
+				}else{
+					alert('yaper');
+				}
+			}
+
+      // CLOCK SYNCHRONIZATION   
+
+  });
+	}
+
+
 	function playPartida(id){
-		localStorage.setItem('idPartida',id);
+
+		$.ajax({
+			url: 'https://'+serverIP+'/partida/'+ id,
+			dataType: 'json',
+			type: 'GET',
+			success: function (data) {
+				setTimer(data.startTime);
+			}
+
+      // CLOCK SYNCHRONIZATION   
+
+  });
 	}
 
 });
