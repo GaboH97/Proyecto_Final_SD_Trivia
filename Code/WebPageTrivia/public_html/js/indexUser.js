@@ -40,19 +40,21 @@ $(document).ready(function () {
 			type: 'GET',
 			success: function (data) {
 				console.log(tiempoPartida);
-				var timeToWait = 120000-(data - tiempoPartida);
+				var timeToWait = 30000-(data - tiempoPartida);
 				console.log('tengo que es perar ' + timeToWait);
 				if(timeToWait>0){
 					$('#modalWait').modal('show');
 
+					var distance = timeToWait;
+
 					var x = setInterval(function() {
 					  // Get todays date and time
-					  var now = Date.now();
 
 					  //console.log("tiempito "+totalTimeGame+"-> "+now)
 
 					  // Find the distance between now an the count down date
-					  var distance = now - timeToWait;
+					  
+					  distance-=1000;
 
 					  // Time calculations for days, hours, minutes and seconds
 					  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));

@@ -126,8 +126,7 @@ public class Juego {
     public long unirseAPartida(long idJugador, long idPartida) {
         EstadisticasPlayer estadisticasPlayer = new EstadisticasPlayer(idPartida, idJugador);
         try {
-            saveHibernate(estadisticasPlayer);
-            
+            saveHibernate(estadisticasPlayer);    
         } catch (Exception ex) {
             System.out.println("AYOOOS");
             ex.printStackTrace();
