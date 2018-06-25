@@ -23,3 +23,16 @@
 - [x] SQ_003_crud_partidas_preguntas
 - [x] SQ_004_unirse/jugar_a_partida
 - [x] SQ_005_Mostrar/imprimir_reporte_de_preguntas_o_ranking
+
+
+
+
+
+**ultima li9sta de lo que falta**
+
+- [ ] pantalla de inicio de usuario para seleccionar que partida jugara
+- [ ] ranking de usuarios
+- [ ] sincronizacion de relojes
+- [ ] enviar la data de las preguntas (tiempo total puntaje mio respuestas correctas incorrectas, y porcentajes)
+- [ ] prubas de carga y estres
+- [ ] html que saldra despues de terminar partida y sera un dialogo que ditga si gano o perdio
