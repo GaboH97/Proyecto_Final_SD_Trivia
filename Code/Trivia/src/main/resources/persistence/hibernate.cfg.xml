@@ -13,6 +13,7 @@
         <mapping class="models.entities.Jugador"/>
         <mapping class="models.entities.Pregunta"/>
         <mapping class="models.entities.Partida"/>
+        <mapping class="models.entities.EstadisticasPlayer"/>
 
 
 

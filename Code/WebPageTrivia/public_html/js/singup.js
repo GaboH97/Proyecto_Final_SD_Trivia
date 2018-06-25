@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     if (localStorage.getItem("user") === null) {
-        location.href = "login.html";
+        location.href = "partials/login.html";
     }
 
     $('#login').on('click', function (e) {

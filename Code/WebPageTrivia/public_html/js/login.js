@@ -14,8 +14,9 @@ $(document).ready(function () {
                         success: function (result) {
                                 console.log("result "+result);
                                 if (result != null) {
-                                        localStorage.setItem('user', JSON.stringify(result));
-                                        location.href = "admonPreguntas.html";
+                                        localStorage.setItem('user', result);
+                                        localStorage.setItem('userID', result.id);
+                                        location.href = "../index.html";
                                 } else {
                                         $("#alert").html("");
                                         $("#alert").append('<div class="alert alert-danger"><strong>Error:  </strong>' + result + '</div>');
