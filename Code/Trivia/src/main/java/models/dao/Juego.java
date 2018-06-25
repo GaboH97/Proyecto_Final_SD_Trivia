@@ -328,7 +328,7 @@ public class Juego {
         try {
             connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "trivia", "123");
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT PREGUNTAS_IDPREGUNTA FROM TRIVIA.PARTIDAS_PREGUNTAS WHERE PARTIDA_ID=1");
+            ResultSet rs = stmt.executeQuery("SELECT PREGUNTAS_IDPREGUNTA FROM TRIVIA.PARTIDAS_PREGUNTAS WHERE PARTIDA_ID="+idPartida);
             sessionHibernate = HibernateUtil.getSessionFactory().openSession();
             
             while (rs.next()) {

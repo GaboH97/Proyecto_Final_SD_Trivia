@@ -40,7 +40,7 @@ $(document).ready(function () {
 			type: 'GET',
 			success: function (data) {
 				console.log(tiempoPartida);
-				var timeToWait = 30000-(data - tiempoPartida);
+				var timeToWait = 10000-(data - tiempoPartida);
 				console.log('tengo que es perar ' + timeToWait);
 				if(timeToWait>0){
 					$('#modalWait').modal('show');

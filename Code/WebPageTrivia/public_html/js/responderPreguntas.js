@@ -146,13 +146,10 @@ function getPartida(id) {
 
       // CLOCK SYNCHRONIZATION
 
-
-
-
-      console.log(partida);
+      console.log("PARTIDA "+partida.id);
       $('#game-name').html('');
       $('#game-name').html('<strong>'+partida.nombre+'<strong>');
-      getListPreguntas(id);    
+      getListPreguntas(partida.id);    
     }
   });
 }
@@ -209,7 +206,7 @@ function getListPreguntas(idPartida){
     type: 'GET',
     success: function (data) {
       partida["preguntas"] = data;
-      console.log(partida);
+      console.log("Pregunta 1 "+partida.preguntas[0]);
       setUpGame();
     }
   });
