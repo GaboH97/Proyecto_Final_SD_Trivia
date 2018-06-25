@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     function addUser() {
         $.ajax({
-            url: 'http://localhost:8181/players',
+            url: 'http://'+serverIP+'/players',
             dataType: 'json',
             success: function (data) {
                 $('#body-table').html('');

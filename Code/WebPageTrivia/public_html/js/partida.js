@@ -5,7 +5,7 @@ $(document).ready(function () {
     var partidaData;
     function getPartida(id) {
         $.ajax({
-            url: 'http://localhost:8181/partida/' + id,
+            url: 'http://'+serverIP+'/partida/' + id,
             dataType: 'json',
             type: 'GET',
             success: function (data) {
@@ -52,7 +52,7 @@ $(document).ready(function () {
 
     function addQuestions() {
         $.ajax({
-            url: 'http://localhost:8181/questions',
+            url: 'http://'+serverIP+'/questions',
             dataType: 'json',
             success: function (data) {
                 $('#preguntas-agregar-list').html('');
@@ -102,7 +102,7 @@ $(document).ready(function () {
         e.preventDefault();
         console.log(partidaData);
         $.ajax({
-            url: 'http://localhost:8181/partida',
+            url: 'http://'+serverIP+'/partida',
             method: "POST",
             dataType: 'json',
             data: partidaData,
@@ -127,7 +127,7 @@ $(document).ready(function () {
             partidaData = $('#form-partida').serializeFormJSON();
         }
         $.ajax({
-            url: "http://localhost:8181/question/" + id,
+            url: "http://"+serverIP+"/question/" + id,
             type: 'GET',
             success: function (data, textStatus, jqXHR) {
                 if (partidaData.preguntas === undefined) {
@@ -168,7 +168,7 @@ $(document).ready(function () {
     $("#btn-crear").on('click', function (e) {
         e.preventDefault();
         $.ajax({
-            url: 'http://localhost:8181/addquestion',
+            url: 'http://'+serverIP+'/addquestion',
             method: "POST",
             dataType: 'json',
             data: $('#form-question').serializeFormJSON(),
