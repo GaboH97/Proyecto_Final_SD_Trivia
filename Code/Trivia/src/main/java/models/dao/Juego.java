@@ -304,12 +304,15 @@ public class Juego {
         hql = "SELECT P.tiempoPartida FROM " + Partida.class.getName() + " P where id= " + params;
         query = sessionHibernate.createQuery(hql);
         List tiempo = query.list();
+        hql = "SELECT P.startTime FROM " + Partida.class.getName() + " P where id= " + params;
+        query = sessionHibernate.createQuery(hql);
+        List startTime = query.list();
         
         Partida partida = new Partida();
         partida.setId((Long) id.get(0));
         partida.setNombre((String) name.get(0));
         partida.setTiempoPartida((int) tiempo.get(0));
-        
+        partida.setStartTime((Long)startTime.get(0));
         sessionHibernate.close();
         return partida;
         

@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
+	var partidaId;
 	loadPartidas();
+
 
 	function loadPartidas() {
 		$.ajax({
@@ -37,13 +39,31 @@ $(document).ready(function () {
 			url: 'https://'+serverIP+'/getTime',
 			type: 'GET',
 			success: function (data) {
-
+				console.log(tiempoPartida);
 				var timeToWait = 120000-(data - tiempoPartida);
-				console.log('tengo que es perar '+timeToWait);
+				console.log('tengo que es perar ' + timeToWait);
 				if(timeToWait>0){
-					$('#modalWait').modal('show'); 
+					$('#modalWait').modal('show');
+
+					var x = setInterval(function() {
+					  // Get todays date and time
+					  var now = Date.now();
+
+					  //console.log("tiempito "+totalTimeGame+"-> "+now)
+
+					  // Find the distance between now an the count down date
+					  var distance = now - timeToWait;
+
+					  // Time calculations for days, hours, minutes and seconds
+					  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+					  // Display the result in the element with id="demo"
+					  $('#labelTimer').text(minutes + "m " + seconds + "s ");
+					}, 1000);
+
 					setTimeout(function(){
-						localStorage.setItem('idPartida',id);
+						localStorage.setItem('idPartida',partidaId);
 						location.href = "partials/responderPregunta.html";
 					},timeToWait);
 				}else{
@@ -64,6 +84,8 @@ $(document).ready(function () {
 			dataType: 'json',
 			type: 'GET',
 			success: function (data) {
+				console.log("data "+data.startTime);
+				partidaId=id;
 				setTimer(data.startTime);
 			}
 
