@@ -125,7 +125,7 @@ $('#next-question').on('click', function (e) {
 
 
 $('#finalize-trivia').on('click', function (e) {
-  location.href ="partials/ranking.html";
+  location.href ="ranking.html";
 });
 
 function getPregunta(id) {
