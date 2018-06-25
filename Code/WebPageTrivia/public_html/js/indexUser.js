@@ -27,7 +27,7 @@ $(document).ready(function () {
 		
 		$('#play-' + element.id).on('click', function (e) {
 			playPartida(e.currentTarget.attributes[3].value);
-			location.href="partials/responderPregunta.html";
+			
 		});
 
 	}
