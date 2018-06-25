@@ -78,6 +78,12 @@ $(document).ready(function () {
   });
 	}
 
+	  $('#login').on('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('user');
+        location.href = "partials/login.html";
+    });
+
 
 	function playPartida(id){
 

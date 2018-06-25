@@ -10,8 +10,10 @@ $(document).ready(function () {
             data: $('#form-player').serializeFormJSON(),
             success: function (result) {
                 if (result != null) {
-                    localStorage.setItem('user', JSON.stringify(result));
-                    location.href = "admonPreguntas.html";
+                    localStorage.setItem('user', result);
+                     localStorage.setItem('userID', result.id);
+                    location.href = "../index.html";
+
                 } else {
                     $("#alert").html("");
                     $("#alert").append('<div class="alert alert-danger"><strong>Error:  </strong>' + result + '</div>');

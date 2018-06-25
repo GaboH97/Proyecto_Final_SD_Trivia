@@ -1,13 +1,9 @@
 $(document).ready(function () {
 
-    if (localStorage.getItem("user") === null) {
-        location.href = "partials/login.html";
-    }
-
     $('#login').on('click', function (e) {
         e.preventDefault();
         localStorage.removeItem('user');
-        location.href = "partials/login.html";
+        location.href = "login.html";
     });
 
     (function ($) {
