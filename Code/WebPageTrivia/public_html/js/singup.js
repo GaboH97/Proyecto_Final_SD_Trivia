@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#login').on('click', function (e) {
         e.preventDefault();
         localStorage.removeItem('user');
-        location.href = "login.html";
+        location.href = "partials/login.html";
     });
 
     (function ($) {
