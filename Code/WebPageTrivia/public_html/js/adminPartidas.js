@@ -7,6 +7,7 @@ $(document).ready(function () {
             dataType: 'json',
             type: 'GET',
             success: function (data) {
+                $("#tabla-partida").html("");
                 for (var i = 0; i < data.length; i++) {
                     cargarPartidas(data[i]);
                 }
@@ -16,7 +17,6 @@ $(document).ready(function () {
 
     function cargarPartidas(element) {
         console.log(element);
-        $("#tabla-partida").html("");
         var bodyPartida = "";
         bodyPartida += '<tr id="row-' + element.id + '" ><td>' + element.nombre + '</td><td>' + element.tiempoPartida + '</td>';
         bodyPartida += '<td><div class="btn-group" role="group" aria-label="..."><button id="borra-' + element.id + '" type="button" class="btn btn-default" '
