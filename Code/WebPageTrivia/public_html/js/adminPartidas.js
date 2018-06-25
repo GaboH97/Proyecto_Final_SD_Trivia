@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     function loadPartidas() {
         $.ajax({
-            url: 'http://'+serverIP+'/partidas',
+            url: 'https://'+serverIP+'/partidas',
             dataType: 'json',
             type: 'GET',
             success: function (data) {
@@ -31,7 +31,7 @@ $(document).ready(function () {
     function delPartida(id) {
         console.log(id);
         $.ajax({
-            url: "http://"+serverIP+"/partida/" + id,
+            url: "https://"+serverIP+"/partida/" + id,
             type: 'DELETE',
             success: function (res) {
                 alert(res);

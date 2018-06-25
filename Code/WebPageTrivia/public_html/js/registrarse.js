@@ -4,7 +4,7 @@ $(document).ready(function () {
         e.preventDefault();
         console.log($('#form-player').serializeFormJSON());
         $.ajax({
-            url: 'http://'+serverIP+'/player',
+            url: 'https://'+serverIP+'/player',
             method: "POST",
             dataType: 'json',
             data: $('#form-player').serializeFormJSON(),

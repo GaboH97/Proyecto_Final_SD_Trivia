@@ -7,7 +7,7 @@ $(document).ready(function () {
         $('#iniciarSesion').on('click', function (e) {
                 e.preventDefault();
                 $.ajax({
-                        url: 'http://'+serverIP+'/login',
+                        url: 'https://'+serverIP+'/login',
                         method: "POST",
                         dataType: 'json',
                         data: $('#login-form').serializeFormJSON(),

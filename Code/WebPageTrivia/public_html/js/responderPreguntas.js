@@ -124,7 +124,7 @@ $('#next-question').on('click', function (e) {
 
 function getPregunta(id) {
   $.ajax({
-    url: 'http://'+serverIP+'/question/'+ id,
+    url: 'https://'+serverIP+'/question/'+ id,
     dataType: 'json',
     type: 'GET',
     success: function (data) {
@@ -136,7 +136,7 @@ function getPregunta(id) {
 
 function getPartida(id) {
   $.ajax({
-    url: 'http://'+serverIP+'partida/'+ id,
+    url: 'https://'+serverIP+'partida/'+ id,
     dataType: 'json',
     type: 'GET',
     success: function (data) {

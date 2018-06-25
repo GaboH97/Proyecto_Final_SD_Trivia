@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     function addUser() {
         $.ajax({
-            url: 'http://'+serverIP+'/players',
+            url: 'https://'+serverIP+'/players',
             dataType: 'json',
             success: function (data) {
                 $('#body-table').html('');

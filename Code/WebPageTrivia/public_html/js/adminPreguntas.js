@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     function addQuestions() {
         $.ajax({
-            url: 'http://'+serverIP+'/questions',
+            url: 'https://'+serverIP+'/questions',
             dataType: 'json',
             success: function (data) {
                 $('#pregunta-list').html('');
@@ -47,7 +47,7 @@ $(document).ready(function () {
     function delPregunta(id) {
         console.log(id);
         $.ajax({
-            url: "http://"+serverIP+"/question/" + id,
+            url: "https://"+serverIP+"/question/" + id,
             type: 'DELETE',
             success: function (res) {
                 alert(res);
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     function editPregunta(id) {
         $.ajax({
-            url: "http://"+serverIP+"/question/" + id,
+            url: "https://"+serverIP+"/question/" + id,
             type: 'GET',
             success: function (data, textStatus, jqXHR) {
                 llenarDialogoEditar(data);
@@ -86,7 +86,7 @@ $(document).ready(function () {
         e.preventDefault();
         console.log($('#form-question').serializeFormJSON());
         $.ajax({
-            url: 'http://'+serverIP+'/question',
+            url: 'https://'+serverIP+'/question',
             method: "POST",
             dataType: 'json',
             data: $('#form-question').serializeFormJSON(),

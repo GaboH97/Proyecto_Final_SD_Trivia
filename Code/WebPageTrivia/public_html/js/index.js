@@ -20,7 +20,7 @@ $(document).ready(function () {
     $('#add-player').on('click', function (e) {
         e.preventDefault();
         $.ajax({
-            url: 'http://'+serverIP+'/player',
+            url: 'https://'+serverIP+'/player',
             method: "POST",
             dataType: 'json',
             data: $('#form-player').serializeFormJSON(),
@@ -45,7 +45,7 @@ $(document).ready(function () {
     $('#add-question').on('click', function (e) {
         e.preventDefault();
         $.ajax({
-            url: 'http://'+serverIP+'/question',
+            url: 'https://'+serverIP+'/question',
             method: "POST",
             dataType: 'json',
             data: $('#form-question').serializeFormJSON(),
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     function addPlayers() {
         $.ajax({
-            url: 'http://'+serverIP+'/players',
+            url: 'https://'+serverIP+'/players',
             dataType: 'json',
             success: function (data) {
                 $('#table').html('');
@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     function addQuestions() {
         $.ajax({
-            url: 'http://'+serverIP+'/questions',
+            url: 'https://'+serverIP+'/questions',
             dataType: 'json',
             success: function (data) {
                 $('#table').html('');
