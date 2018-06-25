@@ -21,11 +21,12 @@ $(document).ready(function () {
         bodyPartida += '<tr id="row-' + element.id + '" ><td>' + element.nombre + '</td><td>' + element.tiempoPartida + '</td>';
         bodyPartida += '<td><div class="btn-group" role="group" aria-label="..."><button id="borra-' + element.id + '" type="button" class="btn btn-default" '
         bodyPartida += 'idPartida = "' + element.id + '" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div></td></tr>';
+        $("#tabla-partida").append(bodyPartida);
+        
         $('#borra-' + element.id).on('click', function (e) {
             delPartida(e.currentTarget.attributes[3].value);
             $('#row-' + e.currentTarget.attributes[3].value).remove();
         });
-        $("#tabla-partida").append(bodyPartida);
     }
 
     function delPartida(id) {
