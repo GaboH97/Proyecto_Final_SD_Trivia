@@ -13,47 +13,63 @@
 
     <body>
 
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                            aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
+      <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="adminUsuarios.html">Usuarios</a>
-                        </li>
-                        <li>
-                            <a href="adminPartidas.html">Partidas
-                            </a>
-                        </li>
-                        <li>
-                            <a href="admonPreguntas.html">Preguntas</a>
-                        </li>
-                        <li class="active">
-                            <a href="adminRanking.html">Ranking</a>
-                            <span class="sr-only">(current)</span>
+              <!-- Modal -->
+              <div class="modal fade" id="modalWait" role="dialog">
+                  <div class="modal-dialog">
 
-                        </li>
-                        <li>
-                            <a id="login" href="#">
-                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h1> Tienes que esperar </h1>
+                          </div>
+                          <div class="modal-body">
+                              <div class="col-xs-5">
+                                  <img src="img/Clock.gif" class="img-responsive" alt="Responsive image">
+                              </div>
+
+                              <h2 id ="labelTimer"></h2>
+                          </div>
+
+                      </div>
+
+                  </div>
+              </div>
+
+
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                  aria-expanded="false">
+                  <span class="sr-only">Partidas</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a href="../index.html">Partidas
+                      </a>
+                  </li>
+                  <li class="active">
+                      <a href="ranking.html">Ranking<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li>
+                      <a id="login">
+                          <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                      </a>
+                  </li>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container-fluid -->
+      </nav>
 
         <div class="container">
             <div class="row">
