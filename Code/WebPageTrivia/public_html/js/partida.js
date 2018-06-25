@@ -108,8 +108,7 @@ $(document).ready(function () {
             data: partidaData,
             success: function (result) {
                 if (result !== null || result !== undefined) {
-                    console.log("Percho");
-                   // location.href = "adminPartidas.html";
+                    location.href = "adminPartidas.html";
                 } else {
                     $("#alert").html("");
                     $("#alert").append('<div class="alert alert-danger"><strong>Error:  </strong>' + result + '</div>');
@@ -175,6 +174,7 @@ $(document).ready(function () {
             success: function (result) {
                 if (result !== null || result !== undefined) {
                     addPregunta(result.idPregunta);
+
                 } else {
                     $("#alert").html("");
                     $("#alert").append('<div class="alert alert-danger"><strong>Error:  </strong>' + result + '</div>');
