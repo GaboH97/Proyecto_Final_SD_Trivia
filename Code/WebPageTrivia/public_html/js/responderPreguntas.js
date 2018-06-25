@@ -117,9 +117,15 @@ $('#next-question').on('click', function (e) {
     llenarDialogoResponderPregunta(pregunta);
     
   }else{
-    alert("ya se acabó");
+    alert("El juego ha terminado");
+
     stopGame();
   }
+});
+
+
+$('#finalize-trivia').on('click', function (e) {
+  location.href ="partials/ranking.html";
 });
 
 function getPregunta(id) {
