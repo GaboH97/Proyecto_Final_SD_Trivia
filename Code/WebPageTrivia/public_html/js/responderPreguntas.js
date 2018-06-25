@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
 
+  var serverIP = "";
+
   var preguntaIndex = 0;
   var progress = 0;
   var percentageIncrement = 0;
@@ -122,7 +124,7 @@ $('#next-question').on('click', function (e) {
 
 function getPregunta(id) {
   $.ajax({
-    url: 'http://localhost:8181/question/'+ id,
+    url: 'http://'+serverIP+'/question/'+ id,
     dataType: 'json',
     type: 'GET',
     success: function (data) {
@@ -134,7 +136,7 @@ function getPregunta(id) {
 
 function getPartida(id) {
   $.ajax({
-    url: 'http://localhost:8181/partida/'+ id,
+    url: 'http://'+serverIP+'partida/'+ id,
     dataType: 'json',
     type: 'GET',
     success: function (data) {
