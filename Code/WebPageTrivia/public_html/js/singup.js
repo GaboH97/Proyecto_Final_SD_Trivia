@@ -1,9 +1,5 @@
 $(document).ready(function () {
 
-    if (localStorage.getItem("user") === null) {
-        location.href = "login.html";
-    }
-
     $('#login').on('click', function (e) {
         e.preventDefault();
         localStorage.removeItem('user');

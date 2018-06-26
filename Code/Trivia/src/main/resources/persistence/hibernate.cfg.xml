@@ -6,6 +6,7 @@
         <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
         <property name="hibernate.connection.username">trivia</property>
         <property name="hibernate.connection.password">123</property>
+<!--        <property name="hibernate.connection.pool_size">200</property>-->
         <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
@@ -13,6 +14,7 @@
         <mapping class="models.entities.Jugador"/>
         <mapping class="models.entities.Pregunta"/>
         <mapping class="models.entities.Partida"/>
+        <mapping class="models.entities.EstadisticasPlayer"/>
 
 
 

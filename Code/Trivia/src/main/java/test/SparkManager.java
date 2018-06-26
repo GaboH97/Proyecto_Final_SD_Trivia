@@ -35,6 +35,8 @@ public class SparkManager {
 //        get("/trainners", (req, res) -> juego.getAllTrainners(), JsonUtil.json());
 //        get("/movements", (req, res) -> juego.getAllMovements(), JsonUtil.json());
 
+        get("/playersRanking", (req, res) -> juego.getPlayersRanking(), JsonUtil.json());
+
         post("/login", (req, res) -> juego.login(req.queryParams("email"), req.queryParams("password")), JsonUtil.json());
 
         post("/player", (req, res) -> juego.createPlayer(
@@ -56,6 +58,26 @@ public class SparkManager {
                     tiempo,
                     idsPreguntas);
         }, JsonUtil.json());
+
+        post("/joinPartida", (rqst, rspns) -> {
+            long time = juego.unirseAPartida(Long.parseLong(rqst.queryParams("idJugador")),
+                     Long.parseLong(rqst.queryParams("idPartida")));
+            
+            return time;
+        }, JsonUtil.json());
+        
+        post("/updateStats", (rqst, rspns) -> {
+           juego.updateStatsOfAPlayer(Long.parseLong(rqst.queryParams("idPartida")),
+                   Long.parseLong(rqst.queryParams("idJugador")),
+                   Integer.parseInt(rqst.queryParams("puntaje")),
+                   Integer.parseInt(rqst.queryParams("respuestasCorrectas")),
+                   Double.parseDouble(rqst.queryParams("tiempoTotal")),
+                   Integer.parseInt(rqst.queryParams("numeroPreguntas")));
+            
+            return "Estadísticas guardadas";
+        }, JsonUtil.json());
+        
+        get("/getTime", (req, res) -> System.currentTimeMillis());
 
         get("/partidapreguntalist/:id", (req, res) -> juego.getListPreguntasPorPartida(req.params(":id")),
                 JsonUtil.json());

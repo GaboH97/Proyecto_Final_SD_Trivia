@@ -1,29 +1,29 @@
 $(document).ready(function () {
 
-
-  var serverIP = "";
-
   var preguntaIndex = 0;
   var progress = 0;
   var percentageIncrement = 0;
 
-  var partidaID = 1;
+  var partidaID = localStorage.getItem('idPartida');
 
   var startGameTimeStamp;
+  var timeToServer;
 
   var startAnswerTimestamp;
   var endAnswerTimestamp;
   var tiempoLimitePregunta;
   var tiempoLimitePartida;
 
-  var totalTimeAnswer = 0;  
+  var totalTimeAnswer = 0;
+
   var totalTimeGame = 0;
-
   var puntaje = 0;
-  var puntajePregunta = 0;
-
   var respuestasCorrectas = 0;
 
+  
+  var puntajePregunta = 0;
+
+ 
   var pregunta;
   var partida;
 
@@ -117,9 +117,15 @@ $('#next-question').on('click', function (e) {
     llenarDialogoResponderPregunta(pregunta);
     
   }else{
-    alert("ya se acabó");
+    alert("El juego ha terminado");
+
     stopGame();
   }
+});
+
+
+$('#finalize-trivia').on('click', function (e) {
+  location.href ="ranking.html";
 });
 
 function getPregunta(id) {
@@ -135,20 +141,85 @@ function getPregunta(id) {
 }
 
 function getPartida(id) {
+  console.log("THIS IS "+serverIP);
   $.ajax({
-    url: 'https://'+serverIP+'partida/'+ id,
+    url: 'https://'+serverIP+'/partida/'+ id,
     dataType: 'json',
     type: 'GET',
     success: function (data) {
       partida = data;
+      setUpStats(partida.id);
+
+      // CLOCK SYNCHRONIZATION
+
+      console.log("PARTIDA "+partida.id);
       $('#game-name').html('');
       $('#game-name').html('<strong>'+partida.nombre+'<strong>');
+      getListPreguntas(partida.id);    
+    }
+  });
+}
+
+
+
+function openModalWait(){
+  var x = setInterval(function() {
+  // Get todays date and time
+  var now = Date.now();
+
+  //console.log("tiempito "+totalTimeGame+"-> "+now)
+
+  // Find the distance between now an the count down date
+  var distance = now - startGameTimeStamp;
+
+  // Time calculations for days, hours, minutes and seconds
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  $('#total-time-game').text("Tiempo de juego: "+minutes + "m " + seconds + "s ");
+}, 1000);
+}
+
+
+function setUpStats(idPartida){
+
+  var stats ={
+    "idJugador":localStorage.getItem('userID'),
+    "idPartida":idPartida
+  };
+
+  console.log("stats "+stats.idJugador+" -> "+stats.idPartida);
+
+
+  $.ajax({
+    url: 'https://'+serverIP+'/joinPartida',
+    dataType: 'json',
+    type: 'POST',
+    data : stats,
+    success: function (data) {
+      timeToServer = data;
+      openModalWait();
+      console.log("This is time: "+timeToServer);
+    }
+  });
+}
+
+function getListPreguntas(idPartida){
+   $.ajax({
+    url: 'https://'+serverIP+'/partidapreguntalist/'+ idPartida,
+    dataType: 'json',
+    type: 'GET',
+    success: function (data) {
+      partida["preguntas"] = data;
+      console.log("Pregunta 1 "+partida.preguntas[0]);
       setUpGame();
     }
   });
 }
 
 function setUpGame(){
+
  startGameTimeStamp = Date.now();
 
  pregunta = partida.preguntas[preguntaIndex];
@@ -171,11 +242,34 @@ function stopGame(){
   $('#answer-question').addClass('mybtn-hidden');
   $('#next-question').addClass('mybtn-hidden');
   $('#finalize-trivia').removeClass('mybtn-hidden');
-
-  estadisticas.estadisticasPregunta[preguntaIndex].tiempoTotalJuego = totalTimeGame;
-
-  console.log(estadisticas); 
+  sendStats();
 }
+
+function sendStats(){
+
+  var stats = {
+    "idJugador":localStorage.getItem('userID'),
+    "idPartida":partidaID,
+    "tiempoTotal": totalTimeGame,
+    "puntaje": puntaje,
+    "respuestasCorrectas": respuestasCorrectas,
+    "numeroPreguntas":partida.preguntas.length
+  };
+
+  console.log(stats);
+
+   $.ajax({
+    url: 'https://'+serverIP+'/updateStats',
+    dataType: 'json',
+    type: 'POST',
+    data : stats,
+    success: function (data) {
+      console.log(data);
+    }
+  });
+}
+
+
 
 function llenarDialogoResponderPregunta(data) {
   console.log(data);
@@ -203,7 +297,9 @@ function llenarDialogoResponderPregunta(data) {
 
     var diff = endAnswerTimestamp - startAnswerTimestamp;
 
-    totalTimeAnswer = Math.floor((diff % (1000 * 60)) / 1000);
+    totalTimeAnswer = Math.floor((diff % (1000 * 60)) / 100);
+
+    totalTimeAnswer = totalTimeAnswer/10;
 
     estadisticasPregunta.tiempoRespuesta = totalTimeAnswer;
 
