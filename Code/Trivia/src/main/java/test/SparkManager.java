@@ -70,9 +70,9 @@ public class SparkManager {
 
         get("/pdf", (request, response) -> {
             try {
+                
                 Path path = Paths.get("C:/Users/JuanDiegost/Desktop/a.pdf");
                 byte[] data = Files.readAllBytes(path);
-
                 HttpServletResponse httpServletResponse = response.raw();
                 httpServletResponse.setContentType("application/pdf");
                 httpServletResponse.addHeader("Content-Disposition", "inline; filename=mypdf.pdf");
