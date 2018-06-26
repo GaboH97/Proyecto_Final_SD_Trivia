@@ -143,11 +143,13 @@ public class Juego {
     }
     
     public String crearPartida(String id, String nombre, String tiempoPartida, ArrayList<String> idPreguntas) {
+        System.out.println(tiempoPartida);
         Partida partida = new Partida(nombre, Integer.parseInt(tiempoPartida), new ArrayList<>());
         if (!id.isEmpty()) {
             partida.setId(Long.parseLong(id));
         }
         ArrayList<Pregunta> preguntaList = new ArrayList();
+        
         for (String idPregunta : idPreguntas) {
             System.out.println("id pre+ " + idPregunta);
             preguntaList.add(getQuestionById(idPregunta));

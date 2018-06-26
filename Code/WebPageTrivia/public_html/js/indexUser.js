@@ -69,7 +69,7 @@ $(document).ready(function () {
 						location.href = "partials/responderPregunta.html";
 					},timeToWait);
 				}else{
-					alert('yaper');
+					alert('Lo sentimos la partida ya se ha iniciado...');
 				}
 			}
 
